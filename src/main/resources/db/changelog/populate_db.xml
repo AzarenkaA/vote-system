@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2020-11-29-10" author="Anton Azarenka">
+        <comment>add data in tables: user</comment>
+        <sql>
+            insert into main.users
+            (id, email, password, enabled, name, created_user) values
+            ('4993f33d-cd83-4b87-a4d4-57a11e65aa9b', 'admin@mail.ru', '$2a$10$dMA4vWKr5L7LbVzSb48PdeQLq8DdrQcz2j2Ma7zI7PPQnrUWarYzS', true, 'admin','system')
+        </sql>
+    </changeSet>
+
+    <changeSet id="2020-11-29-01" author="Anton Azarenka" runInTransaction="false">
+        <comment>add data in tables: role</comment>
+        <sql>
+            insert into main.role (user_id, role) values
+            ('4993f33d-cd83-4b87-a4d4-57a11e65aa9b','ADMIN')
+        </sql>
+    </changeSet>
+
+    <changeSet id="2020-11-29-20" author="Anton Azarenka">
+        <sql>
+            insert into main.restaurant (id, title, created_user) VALUES
+            ('fd7ffad2-426c-42fe-9908-f053a882a4f7', 'Brevis', 'SYSTEM'),
+            ('0143508d-8658-4741-85cf-682a5d4bc344', 'Rebro', 'SYSTEM'),
+            ('1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'Amsterdam', 'SYSTEM'),
+            ('19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'Tracktir', 'SYSTEM'),
+            ('0317ebef-c700-4bc6-b3d5-3022bf824aea', 'Batsckova Hata', 'SYSTEM'),
+            ('46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'KFC', 'SYSTEM'),
+            ('50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'McDonalds', 'SYSTEM'),
+            ('886d694b-3219-4998-a60f-64c54778f4a8', 'Berger King', 'SYSTEM'),
+            ('15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'Angle90', 'SYSTEM')
+        </sql>
+    </changeSet>
+
+    <changeSet id="2020-11-29-30" author="Anton Azarenka">
+        <sql>
+            insert into main.menu (id, title, price, created_user) VALUES
+            ('59b80d53-7a70-4a97-835d-2154187eeebb', 'Салат из капусты', '2.50', 'SYSTEM'),
+            ('a6a84e78-c667-4346-9c44-0c44d2782f4d', 'Салат из море продуктов', '10.30', 'SYSTEM'),
+            ('29d57d97-001b-45bf-805c-bd8f7094fe07', 'Салат из мяса птицы','3.25', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', 'Салат ореховый','4.44', 'SYSTEM'),
+            ('1e26853c-01e3-4ab0-a407-7b5ab68af3ca', 'Селдь под шубой', '1.25', 'SYSTEM'),
+            ('9c9662c9-a179-4b3a-b765-6b4841acc252', 'Драники', '5.68', 'SYSTEM'),
+            ('b50009f2-ede7-4d33-9038-d307d8865ccb', 'Ципилины','7.99', 'SYSTEM'),
+            ('a2a0021a-4851-453a-bef5-eb7e40112bdc', 'Картофельное пюре', '1.99', 'SYSTEM'),
+            ('f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c', 'Жареный картофель', '2.50', 'SYSTEM'),
+            ('9dae0367-50f4-4e18-8224-69b03773a7dd', 'Макароны отварные','2.22', 'SYSTEM'),
+            ('01f43e34-971d-4736-aad8-05b9b4b89fb3', 'Овощи тушеные', '2.80', 'SYSTEM'),
+            ('5a7f36f9-9dd9-48e7-9be4-60103c3d862c', 'Суп из курицы','2.00', 'SYSTEM'),
+            ('68f5a84d-2b6a-4cc6-ab7d-864aa38a4bd3', 'Борщ','1.99', 'SYSTEM'),
+            ('562ee1c8-abb4-4ca9-9455-e785fc60d581', 'Холодник', '1.50', 'SYSTEM'),
+            ('45f69d67-c4ea-43e8-bc7b-9055a74b2ec3', 'Рассольник','1.88', 'SYSTEM'),
+            ('7ada4488-d251-4bdd-923f-2240dd2b3019', 'Щи','1.70', 'SYSTEM'),
+            ('d5f1696a-d89c-4112-9f10-5df048e683a6', 'Мясо по французки','10.50', 'SYSTEM'),
+            ('a5994936-e12f-4b3e-bde1-da49b16f468a', 'Филе курицы в сыре','12.80', 'SYSTEM'),
+            ('fd183f31-4251-41f5-87bf-11b479031aa0', 'Биточки из свиннины','7.70', 'SYSTEM'),
+            ('2e19651c-a27e-41a9-8b52-d44c8b0750e2', 'Стрипсы', '8.50', 'SYSTEM'),
+            ('4c026567-e3bb-4fcf-84bf-349831c3ccd7', 'БигМак','15.40', 'SYSTEM'),
+            ('c0cd30e5-19a9-4af2-97bf-e531d0a43840', 'Цезарь ролл','13.50', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', 'Кола', '5.00', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', 'Кофе', '3.45', 'SYSTEM')
+        </sql>
+    </changeSet>
+
+    <changeSet id="2020-11-29-40" author="Anton Azarenka">
+        <sql>
+            insert into main.menu_to_restaurant_map (menu_id, restaurant_id, created_user) VALUES
+            ('59b80d53-7a70-4a97-835d-2154187eeebb', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('59b80d53-7a70-4a97-835d-2154187eeebb', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('59b80d53-7a70-4a97-835d-2154187eeebb', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('59b80d53-7a70-4a97-835d-2154187eeebb', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+
+            ('a6a84e78-c667-4346-9c44-0c44d2782f4d', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('a6a84e78-c667-4346-9c44-0c44d2782f4d', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('a6a84e78-c667-4346-9c44-0c44d2782f4d', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('a6a84e78-c667-4346-9c44-0c44d2782f4d', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+
+            ('29d57d97-001b-45bf-805c-bd8f7094fe07', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('29d57d97-001b-45bf-805c-bd8f7094fe07', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('29d57d97-001b-45bf-805c-bd8f7094fe07', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('29d57d97-001b-45bf-805c-bd8f7094fe07', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('dd234ebe-0f35-4a49-9433-c7359be1e299', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+
+            ('1e26853c-01e3-4ab0-a407-7b5ab68af3ca', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+            ('1e26853c-01e3-4ab0-a407-7b5ab68af3ca', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('1e26853c-01e3-4ab0-a407-7b5ab68af3ca', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+
+            ('9c9662c9-a179-4b3a-b765-6b4841acc252', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('9c9662c9-a179-4b3a-b765-6b4841acc252', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+
+            ('b50009f2-ede7-4d33-9038-d307d8865ccb', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('b50009f2-ede7-4d33-9038-d307d8865ccb', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+
+            ('a2a0021a-4851-453a-bef5-eb7e40112bdc', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('a2a0021a-4851-453a-bef5-eb7e40112bdc', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+            ('a2a0021a-4851-453a-bef5-eb7e40112bdc', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+
+            ('f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+
+            ('9dae0367-50f4-4e18-8224-69b03773a7dd', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('9dae0367-50f4-4e18-8224-69b03773a7dd', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('9dae0367-50f4-4e18-8224-69b03773a7dd', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+
+            ('01f43e34-971d-4736-aad8-05b9b4b89fb3', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('01f43e34-971d-4736-aad8-05b9b4b89fb3', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+
+            ('5a7f36f9-9dd9-48e7-9be4-60103c3d862c', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('5a7f36f9-9dd9-48e7-9be4-60103c3d862c', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+
+            ('68f5a84d-2b6a-4cc6-ab7d-864aa38a4bd3', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('68f5a84d-2b6a-4cc6-ab7d-864aa38a4bd3', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+
+            ('562ee1c8-abb4-4ca9-9455-e785fc60d581', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('562ee1c8-abb4-4ca9-9455-e785fc60d581', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+
+            ('45f69d67-c4ea-43e8-bc7b-9055a74b2ec3', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+            ('45f69d67-c4ea-43e8-bc7b-9055a74b2ec3', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('45f69d67-c4ea-43e8-bc7b-9055a74b2ec3', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+
+            ('7ada4488-d251-4bdd-923f-2240dd2b3019', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('7ada4488-d251-4bdd-923f-2240dd2b3019', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+
+            ('d5f1696a-d89c-4112-9f10-5df048e683a6', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('d5f1696a-d89c-4112-9f10-5df048e683a6', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('d5f1696a-d89c-4112-9f10-5df048e683a6', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('d5f1696a-d89c-4112-9f10-5df048e683a6', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+            ('d5f1696a-d89c-4112-9f10-5df048e683a6', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+
+            ('a5994936-e12f-4b3e-bde1-da49b16f468a', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+            ('a5994936-e12f-4b3e-bde1-da49b16f468a', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('a5994936-e12f-4b3e-bde1-da49b16f468a', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+
+            ('fd183f31-4251-41f5-87bf-11b479031aa0', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+            ('fd183f31-4251-41f5-87bf-11b479031aa0', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+
+            ('2e19651c-a27e-41a9-8b52-d44c8b0750e2', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('2e19651c-a27e-41a9-8b52-d44c8b0750e2', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('2e19651c-a27e-41a9-8b52-d44c8b0750e2', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+
+            ('4c026567-e3bb-4fcf-84bf-349831c3ccd7', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('4c026567-e3bb-4fcf-84bf-349831c3ccd7', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('4c026567-e3bb-4fcf-84bf-349831c3ccd7', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+
+            ('c0cd30e5-19a9-4af2-97bf-e531d0a43840', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('c0cd30e5-19a9-4af2-97bf-e531d0a43840', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('c0cd30e5-19a9-4af2-97bf-e531d0a43840', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('a1490a58-b5e5-4264-ac5e-286f655679ed', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM'),
+
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('53f2216f-f64d-4c81-abb4-9298fca97828', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM')
+        </sql>
+    </changeSet>
+</databaseChangeLog>

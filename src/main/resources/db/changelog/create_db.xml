@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                            http://www.liquibase.org/xml/ns/dbchangelog-ext
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2020-11-29-00" author="Anton Azarenka">
+        <comment>Create tables</comment>
+
+        <createTable tableName="users" schemaName="main">
+            <column name="id" type="varchar(256)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="varchar(256)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="password" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="record_version" type="int" defaultValue="1"/>
+            <column name="created_user" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_user" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="date"/>
+        </createTable>
+
+        <createTable tableName="role" schemaName="main">
+            <column name="user_id" type="varchar(256)">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_role_id"
+                             referencedTableName="users"
+                             referencedColumnNames="id"
+                             referencedTableSchemaName="main"/>
+            </column>
+            <column name="role" type="varchar(256)">
+              <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="menu" schemaName="main">
+            <column name="id" type="varchar(256)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="title" type="varchar(256)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="price" type="decimal(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_version" type="int" defaultValue="1"/>
+            <column name="created_user" type="varchar(256)" defaultValue="SYSTEM">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_user" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="date"/>
+        </createTable>
+
+        <createTable tableName="restaurant" schemaName="main">
+            <column name="id" type="varchar(256)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="title" type="varchar(256)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="votes" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="record_version" type="int" defaultValue="1"/>
+            <column name="created_user" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_user" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="date"/>
+        </createTable>
+
+        <createTable tableName="menu_to_restaurant_map" schemaName="main">
+            <column name="menu_id" type="varchar(256)">
+                <constraints nullable="false"
+                             foreignKeyName="fk_menu_id"
+                             referencedTableName="menu"
+                             referencedColumnNames="id"
+                             referencedTableSchemaName="main"/>
+            </column>
+            <column name="restaurant_id" type="varchar(256)">
+                <constraints nullable="false"
+                             foreignKeyName="fk_restaurant_id"
+                             referencedTableName="restaurant"
+                             referencedColumnNames="id"
+                             referencedTableSchemaName="main"/>
+            </column>
+            <column name="record_version" type="int" defaultValue='1'/>
+            <column name="created_user" type="varchar(256)" defaultValue="SYSTEM">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_user" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="date"/>
+        </createTable>
+
+        <createTable tableName="vote" schemaName="main">
+            <column name="id" type="varchar(256)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="user_id" type="varchar(256)">
+                <constraints nullable="false"
+                             foreignKeyName="fk_vote_id"
+                             referencedTableName="users"
+                             referencedColumnNames="id"
+                             referencedTableSchemaName="main"/>
+            </column>
+            <column name="restaurant_id" type="varchar(256)">
+                <constraints nullable="false"
+                             foreignKeyName="fk_restaurant_vote_id"
+                             referencedTableName="restaurant"
+                             referencedColumnNames="id"
+                             referencedTableSchemaName="main"/>
+            </column>
+            <column name="record_version" type="int" defaultValue='1'/>
+            <column name="created_user" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_user" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date" type="date"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
