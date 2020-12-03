@@ -2,6 +2,8 @@ package com.azarenka.votingsystem.service.api;
 
 import com.azarenka.votingsystem.to.MenuTo;
 
+import java.util.List;
+
 /**
  * Interface for menu service.
  * <p>

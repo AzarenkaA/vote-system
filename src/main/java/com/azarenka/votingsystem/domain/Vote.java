@@ -14,13 +14,24 @@ import javax.persistence.Table;
  * Date 01.12.2020
  */
 @Entity
-@Table(name = "vote")
+@Table(name = "vote", schema = "main")
 public class Vote extends BaseEntity {
 
     @Column(name = "user_id")
     private String userId;
     @Column(name = "restaurant_id")
     private String restaurantId;
+
+    /**
+     * Default constructor.
+     */
+    public Vote() {
+    }
+
+    public Vote(String userId, String restaurantId) {
+        this.userId = userId;
+        this.restaurantId=restaurantId;
+    }
 
     public String getUserId() {
         return userId;

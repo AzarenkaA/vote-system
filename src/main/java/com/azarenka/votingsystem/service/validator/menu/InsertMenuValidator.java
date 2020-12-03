@@ -39,13 +39,14 @@ public class InsertMenuValidator {
     private boolean validateFieldsToNull(MenuTo menuTo) {
         return Objects.nonNull(menuTo.getRestaurantsIds())
             && Objects.nonNull(menuTo.getTitle())
-            && Objects.nonNull(menuTo.getPrice());
+            && Objects.nonNull(menuTo.getPrice())
+            && menuTo.getRestaurantsIds().size() > 0;
     }
 
     private boolean menuIsExist(MenuTo menuTo) {
         if (Objects.nonNull(menuTo.getTitle())) {
-            return menuRepository.findById(menuTo.getId()).isPresent()
-                && menuRepository.findByTitle(menuTo.getTitle()).isPresent();
+            return !menuRepository.findById(menuTo.getId()).isPresent()
+                && !menuRepository.findByTitle(menuTo.getTitle()).isPresent();
         }
         return false;
     }

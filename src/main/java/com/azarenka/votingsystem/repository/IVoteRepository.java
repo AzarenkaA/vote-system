@@ -3,6 +3,8 @@ package com.azarenka.votingsystem.repository;
 import com.azarenka.votingsystem.domain.Vote;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,4 +19,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IVoteRepository extends JpaRepository<Vote, String> {
 
+    @Query("select v from Vote v  where v.userId = :id")
+    Vote findByUserId(@Param("id")String id);
 }

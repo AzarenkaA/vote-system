@@ -22,7 +22,7 @@ import java.util.Optional;
 @Repository
 public interface IMenuRepository extends JpaRepository<Menu, String> {
 
-    @Query("select  m from Menu m join fetch m.restaurants mr where mr.id = :id")
+    @Query("select m from Menu m join fetch m.restaurants mr where mr.id = :id")
     List<Menu> getMenusById(@Param("id") String id);
 
     Optional<Menu> findByTitle(String title);
