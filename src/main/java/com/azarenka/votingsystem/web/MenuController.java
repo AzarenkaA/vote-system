@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -73,7 +74,10 @@ public class MenuController {
      */
     @GetMapping
     // @PreAuthorize("hasAnyRole('USER_ROLE', 'ADMIN')")
-    public List<Menu> getRestaurants() {
-        return menuRepository.findAll();
+    public ResponseEntity<List<MenuTo>> getRestaurants() {
+        return new ResponseEntity<>(menuRepository.findAll()
+            .stream()
+            .map(MenuTo::new)
+            .collect(Collectors.toList()), HttpStatus.OK);
     }
 }

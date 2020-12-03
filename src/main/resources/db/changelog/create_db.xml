@@ -37,7 +37,7 @@
             <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="updated_date" type="date"/>
+            <column name="updated_date" type="timestamp"/>
         </createTable>
 
         <createTable tableName="role" schemaName="main">
@@ -73,7 +73,7 @@
             <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="updated_date" type="date"/>
+            <column name="updated_date" type="timestamp"/>
         </createTable>
 
         <createTable tableName="restaurant" schemaName="main">
@@ -96,7 +96,7 @@
             <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="updated_date" type="date"/>
+            <column name="updated_date" type="timestamp"/>
         </createTable>
 
         <createTable tableName="menu_to_restaurant_map" schemaName="main">
@@ -124,7 +124,7 @@
             <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="updated_date" type="date"/>
+            <column name="updated_date" type="timestamp"/>
         </createTable>
 
         <createTable tableName="vote" schemaName="main">
@@ -155,7 +155,7 @@
             <column name="created_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="updated_date" type="date"/>
+            <column name="updated_date" type="timestamp"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

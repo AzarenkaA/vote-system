@@ -67,7 +67,7 @@ public class UserPrincipal implements UserDetails {
     }
 
     /**
-     * Gets of {@link User}.
+     * Gets of {@link User} instance.
      *
      * @return {@link User}
      */
