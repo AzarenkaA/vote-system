@@ -60,7 +60,7 @@ public class MenuController {
      * @return instance of {@link ResponseEntity<MenuTo>}
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ADMIN') or" + "@menuValidator.checkToInsertMenu(#menu)")
+    @PreAuthorize("hasAnyRole('ADMIN') and" + "@menuValidator.checkToInsertMenu(#menu)")
     public ResponseEntity<MenuTo> setMenuByRestaurant(@Valid @RequestBody MenuTo menu) {
         return new ResponseEntity<>(menuService.save(menu), HttpStatus.OK);
     }
@@ -88,7 +88,7 @@ public class MenuController {
      * @return instance of {@link ResponseEntity<MenuTo>}
      */
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ADMIN') or" + "@menuValidator.checkToUpdateMenu(#menu)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') and" + "@menuValidator.checkToUpdateMenu(#menu)")
     public ResponseEntity<MenuTo> updateMenuByRestaurant(@Valid @RequestBody MenuTo menu) {
         return new ResponseEntity<>(menuService.update(menu), HttpStatus.OK);
     }

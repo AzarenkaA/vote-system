@@ -14,10 +14,10 @@ public enum Role {
     /**
      * User has role as Admin
      */
-    ADMIN,
+    ROLE_ADMIN,
 
     /**
      * User has role as user
      */
-    USER
+    ROLE_USER
 }

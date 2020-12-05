@@ -1,5 +1,6 @@
 package com.azarenka.votingsystem.domain.auth;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -16,6 +17,7 @@ public class SignUpForm {
 
     @NotBlank
     @Size(min = 3, max = 50)
+    @Email
     private String username;
 
     @NotBlank

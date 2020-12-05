@@ -52,7 +52,7 @@ public class UserService implements IUserService {
         User user = new User();
         user.setId(KeyGenerator.generateUuid());
         user.setEmail(registrationUser.getUsername());
-        user.setRoles(Collections.singleton(Role.USER));
+        user.setRoles(Collections.singleton(Role.ROLE_USER));
         return user;
     }
 }
