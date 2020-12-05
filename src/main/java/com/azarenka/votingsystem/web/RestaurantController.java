@@ -64,7 +64,7 @@ public class RestaurantController {
      * @return list of {@link Restaurant}
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    // @PreAuthorize("hasAnyRole('USER_ROLE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<RestaurantTo> getRestaurants() {
         return restaurantRepository.findAll()
             .stream()
@@ -77,7 +77,7 @@ public class RestaurantController {
      * @return
      */
     @PostMapping(value = "/{id}")
-    @PreAuthorize("@voteValidator.checkData(#id)")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN') and" + "@voteValidator.checkData(#id)")
     public ResponseEntity<?> vote(@Valid @PathVariable String id) {
         return new ResponseEntity<>(restaurantService.toVote(id), HttpStatus.ACCEPTED);
     }
@@ -111,7 +111,7 @@ public class RestaurantController {
      * @return list of {@link MenuTo}
      */
     @GetMapping(value = "/{id}/menus")
-    //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<MenuTo> getMenuByRestaurant(@PathVariable String id) {
         return menuRepository.getMenusById(id)
             .stream()

@@ -83,7 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             authorizeRequests()
             .antMatchers("/auth/**").permitAll()
             .antMatchers("/h2-console/**").permitAll()
-            .anyRequest().permitAll()
+            .anyRequest().authenticated()
             .and()
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

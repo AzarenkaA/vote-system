@@ -18,7 +18,7 @@
         <comment>add data in tables: role</comment>
         <sql>
             insert into main.role (user_id, role) values
-            ('4993f33d-cd83-4b87-a4d4-57a11e65aa9b','ADMIN')
+            ('4993f33d-cd83-4b87-a4d4-57a11e65aa9b','ROLE_ADMIN')
         </sql>
     </changeSet>
 
