@@ -3,9 +3,9 @@ package com.azarenka.votingsystem.service.validator;
 import com.azarenka.votingsystem.repository.IRestaurantRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import sun.security.validator.ValidatorException;
 
 /**
  * Validator data.
@@ -22,10 +22,10 @@ public class VoteValidator {
     @Autowired
     private IRestaurantRepository restaurantRepository;
 
-    public boolean checkData(String restaurantId) {
+    public boolean checkData(String restaurantId) throws ValidatorException {
         if (restaurantRepository.findById(restaurantId).isPresent()) {
-           return true;
+            return true;
         }
-        return  false;
+        throw new ValidatorException("Json has not valid data");
     }
 }

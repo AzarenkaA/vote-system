@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Interface for Vote repository.
  * <p>
@@ -20,5 +22,5 @@ import org.springframework.stereotype.Repository;
 public interface IVoteRepository extends JpaRepository<Vote, String> {
 
     @Query("select v from Vote v  where v.userId = :id")
-    Vote findByUserId(@Param("id")String id);
+    List<Vote> findByUserId(@Param("id")String id);
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import sun.security.validator.ValidatorException;
 
 /**
- * Validator data.
+ * Validator of data.
  * <p>
  * (c) ant-azarenko@mail.ru 2020
  * </p>

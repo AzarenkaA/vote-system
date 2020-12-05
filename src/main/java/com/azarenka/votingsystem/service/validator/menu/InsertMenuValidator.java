@@ -18,12 +18,12 @@ import sun.security.validator.ValidatorException;
  */
 public class InsertMenuValidator {
 
-    private IMenuRepository menuRepository;
+    private final IMenuRepository menuRepository;
 
     /**
      * Constructor.
      *
-     * @param menuRepository
+     * @param menuRepository instance of {@link IMenuRepository}
      */
     public InsertMenuValidator(IMenuRepository menuRepository) {
         this.menuRepository = menuRepository;

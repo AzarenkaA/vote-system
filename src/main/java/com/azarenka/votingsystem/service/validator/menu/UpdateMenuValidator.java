@@ -16,12 +16,12 @@ import sun.security.validator.ValidatorException;
  */
 public class UpdateMenuValidator {
 
-    private IMenuRepository menuRepository;
+    private final IMenuRepository menuRepository;
 
     /**
      * Constructor.
      *
-     * @param menuRepository
+     * @param menuRepository instance of {@link IMenuRepository}
      */
     public UpdateMenuValidator(IMenuRepository menuRepository) {
         this.menuRepository = menuRepository;
