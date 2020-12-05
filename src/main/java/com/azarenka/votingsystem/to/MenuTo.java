@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Transfer object for Menu.
+ * Transfer object for {@link Menu}.
  * <p>
  * (c) ant-azarenko@mail.ru 2020
  * </p>

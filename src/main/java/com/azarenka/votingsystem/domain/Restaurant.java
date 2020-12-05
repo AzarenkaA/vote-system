@@ -29,7 +29,7 @@ public class Restaurant extends BaseEntity {
     @Column(name = "title", unique = true)
     private String title;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "menu_to_restaurant_map", joinColumns = {
         @JoinColumn(name = "restaurant_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "menu_id", referencedColumnName = "id")})
