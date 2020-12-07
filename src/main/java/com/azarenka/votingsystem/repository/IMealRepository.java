@@ -1,6 +1,6 @@
 package com.azarenka.votingsystem.repository;
 
-import com.azarenka.votingsystem.domain.Menu;
+import com.azarenka.votingsystem.domain.Meal;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,10 +20,10 @@ import java.util.Optional;
  * Date 28.11.2020
  */
 @Repository
-public interface IMenuRepository extends JpaRepository<Menu, String> {
+public interface IMealRepository extends JpaRepository<Meal, String> {
 
-    @Query("select m from Menu m join fetch m.restaurants mr where mr.id = :id")
-    List<Menu> getMenusById(@Param("id") String id);
+    @Query("select m from Meal m join fetch m.restaurants mr where mr.id = :id")
+    List<Meal> getMenusById(@Param("id") String id);
 
-    Optional<Menu> findByTitle(String title);
+    Optional<Meal> findByTitle(String title);
 }

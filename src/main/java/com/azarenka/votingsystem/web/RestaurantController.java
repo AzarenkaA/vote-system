@@ -1,10 +1,12 @@
 package com.azarenka.votingsystem.web;
 
 import com.azarenka.votingsystem.domain.Restaurant;
-import com.azarenka.votingsystem.repository.IMenuRepository;
+import com.azarenka.votingsystem.repository.IMealRepository;
+import com.azarenka.votingsystem.repository.IRestaurantAuditRepository;
 import com.azarenka.votingsystem.repository.IRestaurantRepository;
 import com.azarenka.votingsystem.service.api.IRestaurantService;
-import com.azarenka.votingsystem.to.MenuTo;
+import com.azarenka.votingsystem.to.MealTo;
+import com.azarenka.votingsystem.to.ResponseMessage;
 import com.azarenka.votingsystem.to.RestaurantTo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,23 +47,12 @@ public class RestaurantController {
     @Autowired
     private IRestaurantService restaurantService;
     @Autowired
-    private IMenuRepository menuRepository;
+    private IRestaurantAuditRepository restaurantAuditRepository;
+    @Autowired
+    private IMealRepository menuRepository;
 
     /**
      * Returns all restaurants.
-     * mapping http://localhost:8080/api/restaurants
-     *
-     * Example:
-     * response: {[
-     *      {
-     *          "id": "375c16c5-fbbd-484d-83da-4b4f4090d231",
-     *          "title": "title"
-     *      },
-     *      {
-     *          "id": "e9bac2db-1f4f-4cee-bd43-548a6862e81a",
-     *          "title": "title2"
-     *      }
-     * ]}
      *
      * @return list of {@link Restaurant}
      */
@@ -84,38 +77,41 @@ public class RestaurantController {
 
     /**
      * Returns all menus by restaurant id.
-     * mapping http://localhost:8080/api/restaurants/{id}/menus
      *
-     * JSON example:
-     * response: {[
-     *      {
-     *          "id": "75a001ee-7b67-46a4-80ab-08a66a24ce7c",
-     *          "title": "title",
-     *          "price": "2.50",
-     *          "restaurantId: [
-     *              "668bb3c5-72b3-4db8-861a-80ba12a14865",
-     *              "c6eb4717-a99c-43f5-9712-8d7b3490de2c
-     *          ]
-     *      },
-     *      {
-     *          "id": "4bf12130-fc37-4052-ac60-31442228484d",
-     *          "title": "title",
-     *          "price": "2.50",
-     *          "restaurantId: [
-     *              "668bb3c5-72b3-4db8-861a-80ba12a14865",
-     *              "c6eb4717-a99c-43f5-9712-8d7b3490de2c
-     *          ]
-     *      }
-     * ]}
      * @param id restaurant id
-     * @return list of {@link MenuTo}
+     * @return list of {@link MealTo}
      */
     @GetMapping(value = "/{id}/menus")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<MenuTo> getMenuByRestaurant(@PathVariable String id) {
+    public List<MealTo> getMenuByRestaurant(@PathVariable("id") String id) {
         return menuRepository.getMenusById(id)
             .stream()
-            .map(MenuTo::new)
+            .map(MealTo::new)
             .collect(Collectors.toList());
+    }
+
+    /**
+     * Saves one menu by restaurant id.
+     *
+     * @param id   id of {@link Restaurant}
+     * @param menu instance of {@link MealTo}
+     * @return instance of {@link ResponseEntity}
+     */
+    @PostMapping(value = "/{id}/menu")
+    @PreAuthorize("hasRole('ROLE_ADMIN') and" + "@menuValidator.checkInsertMenuData(#menu, #id)")
+    public ResponseEntity<?> saveRestaurantsMenu(@PathVariable("id") String id, @Valid @RequestBody MealTo menu) {
+        restaurantService.save(menu);
+        return new ResponseEntity<>(new ResponseMessage("Created"), HttpStatus.CREATED);
+    }
+
+    /**
+     * @param id
+     * @param date
+     * @return
+     */
+    @GetMapping(value = "/{id}/history/{date}")
+    public ResponseEntity<?> getHistoryMenuByRestaurantIdAndDate(@PathVariable("id") String id, @PathVariable("date")
+        LocalDate date) {
+        return new ResponseEntity<>(restaurantAuditRepository.getByDateAndRestaurantsId(date, id), HttpStatus.OK);
     }
 }

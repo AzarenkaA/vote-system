@@ -16,8 +16,7 @@ public class KeyGenerator {
     /**
      * Default constructor.
      */
-    private KeyGenerator() {
-        throw new AssertionError("Utility class");
+    public KeyGenerator() {
     }
 
     /**

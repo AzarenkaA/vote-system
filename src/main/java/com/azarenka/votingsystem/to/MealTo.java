@@ -1,14 +1,14 @@
 package com.azarenka.votingsystem.to;
 
 import com.azarenka.votingsystem.domain.BaseEntity;
-import com.azarenka.votingsystem.domain.Menu;
+import com.azarenka.votingsystem.domain.Meal;
 
 import java.math.BigDecimal;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Transfer object for {@link Menu}.
+ * Transfer object for {@link Meal}.
  * <p>
  * (c) ant-azarenko@mail.ru 2020
  * </p>
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author Anton Azarenka
  * Date 28.11.2020
  */
-public class MenuTo {
+public class MealTo {
 
     private String id;
     private String title;
@@ -26,14 +26,14 @@ public class MenuTo {
     /**
      * Default constructor.
      */
-    public MenuTo() {
+    public MealTo() {
     }
 
-    public MenuTo(Menu menu) {
-        this.id = menu.getId();
-        this.title = menu.getTitle();
-        this.price = menu.getPrice();
-        this.restaurantsIds = menu.getRestaurants().stream()
+    public MealTo(Meal meal) {
+        this.id = meal.getId();
+        this.title = meal.getTitle();
+        this.price = meal.getPrice();
+        this.restaurantsIds = meal.getRestaurants().stream()
             .map(BaseEntity::getId)
             .collect(Collectors.toSet());
     }

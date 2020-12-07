@@ -1,5 +1,6 @@
 package com.azarenka.votingsystem.service.api;
 
+import com.azarenka.votingsystem.to.MealTo;
 import com.azarenka.votingsystem.to.ResponseMessage;
 
 /**
@@ -14,4 +15,8 @@ import com.azarenka.votingsystem.to.ResponseMessage;
 public interface IRestaurantService {
 
     ResponseMessage toVote(String id);
+
+    MealTo save(MealTo menu);
+
+    MealTo update(MealTo mealTo);
 }

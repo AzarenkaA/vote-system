@@ -39,7 +39,7 @@
 
     <changeSet id="2020-11-29-30" author="Anton Azarenka">
         <sql>
-            insert into main.menu (id, title, price, created_user) VALUES
+            insert into main.meal (id, title, price, created_user) VALUES
             ('59b80d53-7a70-4a97-835d-2154187eeebb', 'Салат из капусты', '2.50', 'SYSTEM'),
             ('a6a84e78-c667-4346-9c44-0c44d2782f4d', 'Салат из море продуктов', '10.30', 'SYSTEM'),
             ('29d57d97-001b-45bf-805c-bd8f7094fe07', 'Салат из мяса птицы','3.25', 'SYSTEM'),
@@ -69,7 +69,7 @@
 
     <changeSet id="2020-11-29-40" author="Anton Azarenka">
         <sql>
-            insert into main.menu_to_restaurant_map (menu_id, restaurant_id, created_user) VALUES
+            insert into main.meal_to_restaurant_map (meal_id, restaurant_id, created_user) VALUES
             ('59b80d53-7a70-4a97-835d-2154187eeebb', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
             ('59b80d53-7a70-4a97-835d-2154187eeebb', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
             ('59b80d53-7a70-4a97-835d-2154187eeebb', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),

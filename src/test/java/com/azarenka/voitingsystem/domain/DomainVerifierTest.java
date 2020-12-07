@@ -1,7 +1,7 @@
 package com.azarenka.voitingsystem.domain;
 
 import com.azarenka.votingsystem.domain.BaseEntity;
-import com.azarenka.votingsystem.domain.Menu;
+import com.azarenka.votingsystem.domain.Meal;
 import com.azarenka.votingsystem.domain.User;
 import com.azarenka.votingsystem.domain.auth.JwtResponse;
 import com.azarenka.votingsystem.domain.auth.LoginForm;
@@ -44,7 +44,7 @@ public class DomainVerifierTest {
     @Test
     public void testPojoStructureAndBehavior() {
         testPojoStructureAndBehavior(
-            Arrays.asList(BaseEntity.class, User.class, LoginForm.class, JwtResponse.class, SignUpForm.class, Menu.class));
+            Arrays.asList(BaseEntity.class, User.class, LoginForm.class, JwtResponse.class, SignUpForm.class, Meal.class));
     }
 
     private  void testPojoStructureAndBehavior(List<Class> classes) {

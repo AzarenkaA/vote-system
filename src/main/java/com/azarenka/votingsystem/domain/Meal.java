@@ -1,6 +1,6 @@
 package com.azarenka.votingsystem.domain;
 
-import com.azarenka.votingsystem.to.MenuTo;
+import com.azarenka.votingsystem.to.MealTo;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -25,8 +25,8 @@ import javax.persistence.Table;
  * Date 23.11.2020
  */
 @Entity
-@Table(name = "menu", schema = "main")
-public class Menu extends BaseEntity {
+@Table(name = "meal", schema = "main")
+public class Meal extends BaseEntity {
 
     @Column(name = "title", unique = true)
     private String title;
@@ -34,18 +34,32 @@ public class Menu extends BaseEntity {
     private BigDecimal price;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "menu_to_restaurant_map", schema = "main", joinColumns = {
-        @JoinColumn(name = "menu_id", referencedColumnName = "id")}, inverseJoinColumns = {
+    @JoinTable(name = "meal_to_restaurant_map", schema = "main", joinColumns = {
+        @JoinColumn(name = "meal_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "restaurant_id", referencedColumnName = "id")})
     private Set<Restaurant> restaurants;
 
-    public Menu() {
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "restaurant_audit_to_meal_map", schema = "main", joinColumns = {
+        @JoinColumn(name = "meal_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "audit_id", referencedColumnName = "id")})
+    private Set<RestaurantAudit> audit;
+
+    public Meal() {
     }
 
-    public Menu(MenuTo menuTo) {
-        this.setId(menuTo.getId());
-        this.title = menuTo.getTitle();
-        this.price = menuTo.getPrice();
+    public Meal(MealTo mealTo) {
+        this.setId(mealTo.getId());
+        this.title = mealTo.getTitle();
+        this.price = mealTo.getPrice();
+    }
+
+    public Set<RestaurantAudit> getAudit() {
+        return audit;
+    }
+
+    public void setAudit(Collection<RestaurantAudit> audit) {
+        this.audit = new HashSet<>(audit);
     }
 
     public String getTitle() {

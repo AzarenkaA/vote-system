@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,17 +31,28 @@ public class Restaurant extends BaseEntity {
     private String title;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "menu_to_restaurant_map", joinColumns = {
+    @JoinTable(name = "meal_to_restaurant_map", joinColumns = {
         @JoinColumn(name = "restaurant_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "menu_id", referencedColumnName = "id")})
-    private Set<Menu> menu;
+        @JoinColumn(name = "meal_id", referencedColumnName = "id")})
+    private Set<Meal> meals;
 
-    public Set<Menu> getMenu() {
-        return menu;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<RestaurantAudit> audit;
+
+    public Set<RestaurantAudit> getAudit() {
+        return audit;
     }
 
-    public void setMenu(Collection<Menu> menu) {
-        this.menu = new HashSet<>(menu);
+    public void setAudit(Collection<RestaurantAudit> audit) {
+        this.audit = new HashSet<>(audit);
+    }
+
+    public Set<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(Collection<Meal> meals) {
+        this.meals = new HashSet<>(meals);
     }
 
     public String getTitle() {
@@ -51,7 +63,7 @@ public class Restaurant extends BaseEntity {
         this.title = title;
     }
 
-    public void setMenu(Set<Menu> menu) {
-        this.menu = menu;
+    public void setMenu(Set<Meal> meals) {
+        this.meals = meals;
     }
 }
