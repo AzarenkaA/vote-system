@@ -36,9 +36,9 @@ public class RestaurantAudit extends BaseEntity {
         @JoinColumn(name = "meal_id", referencedColumnName = "id")})
     private Set<Meal> meals;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurants;
+    @ManyToOne()
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
     public LocalDate getDate() {
         return date;
@@ -48,12 +48,12 @@ public class RestaurantAudit extends BaseEntity {
         this.date = dates;
     }
 
-    public Restaurant getRestaurants() {
-        return restaurants;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurants(Restaurant restaurants) {
-        this.restaurants = restaurants;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Set<Meal> getMeals() {

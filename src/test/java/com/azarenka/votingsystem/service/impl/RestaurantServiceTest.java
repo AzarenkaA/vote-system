@@ -210,7 +210,7 @@ public class RestaurantServiceTest {
         meal.setId("306faca2-2663-401e-b06e-5ff4c98c6b35");
         audit.setMeals(Collections.singleton(meal));
         audit.setDate(LocalDate.now());
-        audit.setRestaurants(buildRestaurant());
+        audit.setRestaurant(buildRestaurant());
         return new HashSet<>(Collections.singleton(audit));
     }
 }

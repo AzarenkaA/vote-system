@@ -1,5 +1,6 @@
 package com.azarenka.votingsystem.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -49,5 +50,15 @@ public class TimeUtil {
      */
     public static String dateToString(LocalDateTime localDateTime) {
         return localDateTime == null ? "" : localDateTime.format(DATE_FORMATTER);
+    }
+
+    /**
+     * Returns date according to string.
+     *
+     * @param date date in string
+     * @return instance of {@link LocalDate}
+     */
+    public static LocalDate getDate(String date) {
+        return LocalDate.parse(date, DATE_FORMATTER);
     }
 }
