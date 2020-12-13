@@ -140,6 +140,7 @@ public class RestaurantServiceTest {
     @Test
     public void testUpdate() {
         mockStatic(KeyGenerator.class);
+        mockStatic(UserPrincipal.class);
         when(KeyGenerator.generateUuid()).thenReturn("306faca2-2663-401e-b06e-5ff4c98c6b35");
         Meal expectedMeal = buildMeal();
         MealTo mealTo = buildMealTo();
@@ -161,6 +162,7 @@ public class RestaurantServiceTest {
         Set<RestaurantAudit> expectedRestAudit = buildRestaurantsAudit();
         when(auditRepository.saveAll(expectedRestAudit)).thenReturn(new ArrayList<>(buildRestaurantsAudit()));
         restaurantService.save(mealTo);
+        verify(restaurantRepository).findAllById(Collections.singleton("d52a0f16-665a-4134-9bd9-2a6722ef15ed"));
         verify(voteRepository);
     }
 

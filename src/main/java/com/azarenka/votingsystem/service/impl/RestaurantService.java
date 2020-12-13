@@ -102,7 +102,7 @@ public class RestaurantService implements IRestaurantService {
         meal.setUpdatedDate(LocalDateTime.now());
         meal.setRecordVersion(meal.getRecordVersion() + 1);
         MealTo updatedMenu = new MealTo(mealRepository.save(meal));
-        Set<RestaurantAudit> auditByMenuId = auditRepository.getAuditByMenuId(meal.getId());
+        Set<RestaurantAudit> auditByMenuId = auditRepository.getAuditByMenuIdAndDate(meal.getId(),LocalDate.now());
         //auditRepository.saveAll();
         LOGGER.info("Menu has been updated with id {} ", meal.getId());
         return updatedMenu;

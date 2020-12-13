@@ -26,4 +26,7 @@ public interface IRestaurantAuditRepository extends JpaRepository<RestaurantAudi
     Set<RestaurantAudit> getAuditByMenuId(@Param("id") String id);
 
     RestaurantAudit getByDateAndRestaurantsId(@Param("date")LocalDate date, @Param("id") String id);
+
+    @Query("select r from RestaurantAudit r join fetch r.meals mr where mr.id = :id and mr.date = :date")
+    Set<RestaurantAudit> getAuditByMenuIdAndDate(String id, LocalDate date);
 }
