@@ -14,6 +14,12 @@
   The system is an able to adds new users. System will registration of new user and gives him a ROLE_USER. User with 
   admin role _ROLE_ADMIN_a already exist in the system.
   
+##UserController
+#### SignUp.
+  The system is an able to adds new users. System will registration of new user and gives him a ROLE_USER. User with 
+  admin role _ROLE_ADMIN_a already exist in the system.
+  
+  Http method **POST**: 
   mapping http://localhost:8080/api/auth/signup.
   
   Json request example:
@@ -38,8 +44,9 @@
         Unauthorized error. Message - User 123@mail.ru already exist.
   
  
-### SignIn
-mapping http://localhost:8080/api/auth/signin.
+#### SignIn.
+Http method **POST**: 
+mapping http://localhost:8080/api/auth/signin.  
 
    The system to login takes next request:
        
@@ -65,3 +72,108 @@ next message:
         
    After the login in the system that to be able swap messaging between systems requests should have header 
    'Authorization' with the parameter: 'Bearer' + space + 'token'.
+   
+##RestaurantController
+
+This controller proposes next api:
+   - Gets all restaurants. System returns only restaurant without meal.
+   - Gets all meal of restaurant. 
+   - Saves menu to restaurant.
+   - Votes for a restaurant.
+   - Gets history menu of each restaurant by date.
+   
+#### Get all restaurants.
+The system returns all restaurants.
+ 
+Http method **GET**:
+mapping http://localhost:8080/api/restaurants/
+
+   Example of response:
+      
+      [
+          {
+              "id": "fd7ffad2-426c-42fe-9908-f053a882a4f7",
+              "name": "Brevis"
+          },
+          {
+              "id": "0143508d-8658-4741-85cf-682a5d4bc344",
+              "name": "Rebro"
+          },
+          {
+              "id": "1d4e58fd-6cff-46ff-832f-4be66ee7948a",
+              "name": "Amsterdam"
+          }
+      ]
+
+#### To Vote.
+   The system proposes to user is able to vote for the restaurant by a unique identifier.
+   
+Http method **POST**:
+mapping http://localhost:8080/api/restaurants/{id}
+   
+   The system checks next values:
+   - That user has role 'ROLE_ADMIN' and 'ROLE_USER'
+   - That restaurant with {id} exists in the system.
+   
+   Example of request:
+   
+    http://localhost:8080/api/restaurants/1d4e58fd-6cff-46ff-832f-4be66ee7948a
+    
+   Example of response:
+   
+    {
+        "message": "Voted successfully"
+    }
+    
+#### Menu by the restaurant.
+The system returns all current menu by a restaurant.
+
+Http method **GET**:
+mapping http://localhost:8080/api/restaurants/{id}/menu
+
+   The system checks next values:
+   - That user has role 'ROLE_ADMIN' and 'ROLE_USER'
+    
+   Example of request:
+   
+    http://localhost:8080/api/restaurants/1d4e58fd-6cff-46ff-832f-4be66ee7948a/menu
+    
+   Example of response:
+   
+    [
+        {
+            "id": "59b80d53-7a70-4a97-835d-2154187eeebb",
+            "title": "Салат из капусты",
+            "price": 2.50,
+            "restaurantsIds": [
+                "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+            ]
+        },
+        {
+            "id": "a6a84e78-c667-4346-9c44-0c44d2782f4d",
+            "title": "Салат из море продуктов",
+            "price": 10.30,
+            "restaurantsIds": [
+                "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+            ]
+        }
+    ]
+
+#### Save meal by a restaurant id.
+Http method **POST**:
+mapping http://localhost:8080/api/restaurants/{id}/menu
+
+   Example of request:
+   
+    {
+       "id": "",
+        "title": "newTitle3",
+        "price": "50.00",
+        "restaurantsIds": []  
+    }
+    
+   Example of response:
+   
+    {
+        "message": "Created"
+    }

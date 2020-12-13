@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,8 +67,10 @@ public class RestaurantController {
     }
 
     /**
-     * @param id
-     * @return
+     * Saves vote of user.
+     *
+     * @param id unique identifier of {@link Restaurant}
+     * @return instance of {@link ResponseEntity}
      */
     @PostMapping(value = "/{id}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN') and" + "@voteValidator.checkData(#id)")
@@ -81,7 +84,7 @@ public class RestaurantController {
      * @param id restaurant id
      * @return list of {@link MealTo}
      */
-    @GetMapping(value = "/{id}/menus")
+    @GetMapping(value = "/{id}/menu")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<MealTo> getMenuByRestaurant(@PathVariable("id") String id) {
         return menuRepository.getMenusById(id)
