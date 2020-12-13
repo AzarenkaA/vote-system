@@ -8,6 +8,7 @@ import com.azarenka.votingsystem.service.api.IRestaurantService;
 import com.azarenka.votingsystem.to.MealTo;
 import com.azarenka.votingsystem.to.ResponseMessage;
 import com.azarenka.votingsystem.to.RestaurantTo;
+import com.azarenka.votingsystem.util.TimeUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -114,7 +113,8 @@ public class RestaurantController {
      */
     @GetMapping(value = "/{id}/history/{date}")
     public ResponseEntity<?> getHistoryMenuByRestaurantIdAndDate(@PathVariable("id") String id, @PathVariable("date")
-        LocalDate date) {
-        return new ResponseEntity<>(restaurantAuditRepository.getByDateAndRestaurantsId(date, id), HttpStatus.OK);
+        String date) {
+        return new ResponseEntity<>(restaurantAuditRepository.getByDateAndRestaurantsId(TimeUtil.getDate(date), id),
+            HttpStatus.OK);
     }
 }

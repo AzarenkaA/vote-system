@@ -135,7 +135,7 @@ public class RestaurantService implements IRestaurantService {
         RestaurantAudit audit = new RestaurantAudit();
         audit.setId(KeyGenerator.generateUuid());
         audit.setDate(LocalDate.now());
-        audit.setRestaurants(restaurant);
+        audit.setRestaurant(restaurant);
         return audit;
     }
 }
