@@ -38,9 +38,7 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
+public class UserController {
 
     @Autowired
     private TokenProvider tokenProvider;
