@@ -1,8 +1,8 @@
 package com.azarenka.votingsystem.web;
 
-import com.azarenka.votingsystem.repository.IMenuRepository;
-import com.azarenka.votingsystem.service.api.IMenuService;
-import com.azarenka.votingsystem.to.MenuTo;
+import com.azarenka.votingsystem.repository.IMealRepository;
+import com.azarenka.votingsystem.service.api.IRestaurantService;
+import com.azarenka.votingsystem.to.MealTo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,12 +30,12 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/menus", produces = MediaType.APPLICATION_JSON_VALUE)
-public class MenuController {
+public class MealController {
 
     @Autowired
-    private IMenuService menuService;
+    private IRestaurantService menuService;
     @Autowired
-    private IMenuRepository menuRepository;
+    private IMealRepository menuRepository;
 
     /**
      * Saves new menu in database.
@@ -56,12 +56,12 @@ public class MenuController {
      *          ]
      *      }
      * }
-     * @param menu instance of {@link MenuTo}
-     * @return instance of {@link ResponseEntity<MenuTo>}
+     * @param menu instance of {@link MealTo}
+     * @return instance of {@link ResponseEntity< MealTo >}
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ADMIN') and" + "@menuValidator.checkToInsertMenu(#menu)")
-    public ResponseEntity<MenuTo> setMenuByRestaurant(@Valid @RequestBody MenuTo menu) {
+    @PreAuthorize("hasAnyRole('ADMIN') and" + "@menuValidator.checkInsertMenuDataWithMultipleRest(#menu)")
+    public ResponseEntity<MealTo> setMenuByRestaurant(@Valid @RequestBody MealTo menu) {
         return new ResponseEntity<>(menuService.save(menu), HttpStatus.OK);
     }
 
@@ -85,11 +85,11 @@ public class MenuController {
      *      }
      * }
      * @param menu instance
-     * @return instance of {@link ResponseEntity<MenuTo>}
+     * @return instance of {@link ResponseEntity< MealTo >}
      */
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('ROLE_ADMIN') and" + "@menuValidator.checkToUpdateMenu(#menu)")
-    public ResponseEntity<MenuTo> updateMenuByRestaurant(@Valid @RequestBody MenuTo menu) {
+    @PreAuthorize("hasRole('ROLE_ADMIN') and" + "@menuValidator.checkUpdateMenuDataWithMultipleRest(#menu)")
+    public ResponseEntity<MealTo> updateMenuByRestaurant(@Valid @RequestBody MealTo menu) {
         return new ResponseEntity<>(menuService.update(menu), HttpStatus.OK);
     }
 }

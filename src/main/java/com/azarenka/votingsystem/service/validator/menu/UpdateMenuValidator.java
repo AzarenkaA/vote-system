@@ -1,7 +1,7 @@
 package com.azarenka.votingsystem.service.validator.menu;
 
-import com.azarenka.votingsystem.repository.IMenuRepository;
-import com.azarenka.votingsystem.to.MenuTo;
+import com.azarenka.votingsystem.repository.IMealRepository;
+import com.azarenka.votingsystem.to.MealTo;
 
 import sun.security.validator.ValidatorException;
 
@@ -16,19 +16,19 @@ import sun.security.validator.ValidatorException;
  */
 public class UpdateMenuValidator {
 
-    private final IMenuRepository menuRepository;
+    private final IMealRepository menuRepository;
 
     /**
      * Constructor.
      *
-     * @param menuRepository instance of {@link IMenuRepository}
+     * @param menuRepository instance of {@link IMealRepository}
      */
-    public UpdateMenuValidator(IMenuRepository menuRepository) {
+    public UpdateMenuValidator(IMealRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
 
-    public boolean validate(MenuTo menuTo) throws ValidatorException {
-        if (validateFieldsToNull(menuTo) && menuIsExist(menuTo.getId())) {
+    public boolean validate(MealTo mealTo) throws ValidatorException {
+        if (validateFieldsToNull(mealTo) && menuIsExist(mealTo.getId())) {
             return true;
         }
         throw new ValidatorException("Json has not valid data");
@@ -38,10 +38,10 @@ public class UpdateMenuValidator {
         return menuRepository.findById(menuId).isPresent();
     }
 
-    private boolean validateFieldsToNull(MenuTo menuTo) {
-        return menuTo.getId() != null
-            && menuTo.getRestaurantsIds() != null
-            && menuTo.getTitle() != null
-            && menuTo.getPrice() != null;
+    private boolean validateFieldsToNull(MealTo mealTo) {
+        return mealTo.getId() != null
+            && mealTo.getRestaurantsIds() != null
+            && mealTo.getTitle() != null
+            && mealTo.getPrice() != null;
     }
 }

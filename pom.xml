@@ -12,6 +12,7 @@
     <artifactId>voiting-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>voting-system</name>
+    <packaging>jar</packaging>
     <description>Voting system to decide where to have lunch</description>
 
     <properties>
@@ -22,6 +23,10 @@
         <hibirnate_version>5.4.24.Final</hibirnate_version>
         <checkstyle-version>3.0.0</checkstyle-version>
         <openpojo.version>0.8.10</openpojo.version>
+        <powermock-version>1.7.0RC4</powermock-version>
+        <mockito-version>2.7.5</mockito-version>
+        <junit.jupiter.version>5.3.0</junit.jupiter.version>
+        <junit.jupiter.params.version>5.3.1</junit.jupiter.params.version>
     </properties>
 
     <dependencies>
@@ -86,10 +91,48 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.validator.version}</version>
         </dependency>
+        <!--TEST -->
         <dependency>
             <groupId>com.openpojo</groupId>
             <artifactId>openpojo</artifactId>
             <version>${openpojo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <version>${powermock-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>${powermock-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.jupiter.params.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -98,6 +141,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.0.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

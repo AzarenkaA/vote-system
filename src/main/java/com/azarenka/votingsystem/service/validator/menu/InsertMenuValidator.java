@@ -1,7 +1,7 @@
 package com.azarenka.votingsystem.service.validator.menu;
 
-import com.azarenka.votingsystem.repository.IMenuRepository;
-import com.azarenka.votingsystem.to.MenuTo;
+import com.azarenka.votingsystem.repository.IMealRepository;
+import com.azarenka.votingsystem.to.MealTo;
 
 import java.util.Objects;
 
@@ -18,35 +18,35 @@ import sun.security.validator.ValidatorException;
  */
 public class InsertMenuValidator {
 
-    private final IMenuRepository menuRepository;
+    private final IMealRepository menuRepository;
 
     /**
      * Constructor.
      *
-     * @param menuRepository instance of {@link IMenuRepository}
+     * @param menuRepository instance of {@link IMealRepository}
      */
-    public InsertMenuValidator(IMenuRepository menuRepository) {
+    public InsertMenuValidator(IMealRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
 
-    public boolean validate(MenuTo menuTo) throws ValidatorException {
-        if (validateFieldsToNull(menuTo) && menuIsExist(menuTo)) {
+    public boolean validate(MealTo mealTo) throws ValidatorException {
+        if (validateFieldsToNull(mealTo) && menuIsExist(mealTo)) {
             return true;
         }
         throw new ValidatorException("Json has not valid data");
     }
 
-    private boolean validateFieldsToNull(MenuTo menuTo) {
-        return Objects.nonNull(menuTo.getRestaurantsIds())
-            && Objects.nonNull(menuTo.getTitle())
-            && Objects.nonNull(menuTo.getPrice())
-            && menuTo.getRestaurantsIds().size() > 0;
+    private boolean validateFieldsToNull(MealTo mealTo) {
+        return Objects.nonNull(mealTo.getRestaurantsIds())
+            && Objects.nonNull(mealTo.getTitle())
+            && Objects.nonNull(mealTo.getPrice())
+            && mealTo.getRestaurantsIds().size() > 0;
     }
 
-    private boolean menuIsExist(MenuTo menuTo) {
-        if (Objects.nonNull(menuTo.getTitle())) {
-            return !menuRepository.findById(menuTo.getId()).isPresent()
-                && !menuRepository.findByTitle(menuTo.getTitle()).isPresent();
+    private boolean menuIsExist(MealTo mealTo) {
+        if (Objects.nonNull(mealTo.getTitle())) {
+            return !menuRepository.findById(mealTo.getId()).isPresent()
+                && !menuRepository.findByTitle(mealTo.getTitle()).isPresent();
         }
         return false;
     }
