@@ -7,8 +7,6 @@ import com.azarenka.votingsystem.service.api.IUserService;
 import com.azarenka.votingsystem.service.auth.TokenProvider;
 import com.azarenka.votingsystem.to.ResponseMessage;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

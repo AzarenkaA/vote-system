@@ -88,7 +88,12 @@ public class RestaurantService implements IRestaurantService {
         Meal meal = new Meal(mealTo);
         meal.setRestaurants(restaurantRepository.findAllById(mealTo.getRestaurantsIds()));
         Meal createdMenu = mealRepository.save(meal);
-        writeAudit(createdMenu);
+        Set<RestaurantAudit> restaurantAudits = prepareDateForAudit(mealTo, meal);
+        if (restaurantAudits.size() > 0) {
+            auditRepository.saveAll(restaurantAudits);
+        } else {
+            writeAudit(createdMenu);
+        }
         LOGGER.info("Menu has been created with id {} ", meal.getTitle());
         return new MealTo(createdMenu);
     }
@@ -102,8 +107,8 @@ public class RestaurantService implements IRestaurantService {
         meal.setUpdatedDate(LocalDateTime.now());
         meal.setRecordVersion(meal.getRecordVersion() + 1);
         MealTo updatedMenu = new MealTo(mealRepository.save(meal));
-        Set<RestaurantAudit> auditByMenuId = auditRepository.getAuditByMenuIdAndDate(meal.getId(),LocalDate.now());
-        //auditRepository.saveAll();
+        Set<RestaurantAudit> restaurantAudits = prepareDateForAudit(mealTo, meal);
+        auditRepository.saveAll(restaurantAudits);
         LOGGER.info("Menu has been updated with id {} ", meal.getId());
         return updatedMenu;
     }
@@ -113,7 +118,6 @@ public class RestaurantService implements IRestaurantService {
         return votes.stream()
             .filter(vote -> TimeUtil.dateToString(localDateTime).equalsIgnoreCase(
                 TimeUtil.dateToString(vote.getCreatedDate()))).findFirst().orElse(null);
-
     }
 
     private LocalTime getVotedTime(Vote vote) {
@@ -122,11 +126,23 @@ public class RestaurantService implements IRestaurantService {
             : vote.getUpdatedDate().toLocalTime();
     }
 
+    private Set<RestaurantAudit> prepareDateForAudit(MealTo mealTo, Meal newMeal) {
+        Set<RestaurantAudit> restaurantAudits = auditRepository.getAllByDate(LocalDate.now());
+        for (String id : mealTo.getRestaurantsIds()) {
+            restaurantAudits = restaurantAudits.stream()
+                .filter(audit -> audit.getRestaurant().getId().equals(id))
+                .collect(Collectors.toSet());
+        }
+        return restaurantAudits.stream()
+            .peek(audit -> audit.getHistoryMeals().add(newMeal))
+            .collect(Collectors.toSet());
+    }
+
     private void writeAudit(Meal meal) {
         Set<RestaurantAudit> auditSet = meal.getRestaurants()
             .stream()
             .map(this::createAudit)
-            .peek(audit -> audit.setMeals(Collections.singleton(meal)))
+            .peek(audit -> audit.setHistoryMeals(Collections.singleton(meal)))
             .collect(Collectors.toSet());
         auditRepository.saveAll(auditSet);
     }

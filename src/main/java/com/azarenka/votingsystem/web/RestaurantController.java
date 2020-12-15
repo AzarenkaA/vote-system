@@ -5,8 +5,8 @@ import com.azarenka.votingsystem.repository.IMealRepository;
 import com.azarenka.votingsystem.repository.IRestaurantAuditRepository;
 import com.azarenka.votingsystem.repository.IRestaurantRepository;
 import com.azarenka.votingsystem.service.api.IRestaurantService;
+import com.azarenka.votingsystem.to.HistoryMenuTo;
 import com.azarenka.votingsystem.to.MealTo;
-import com.azarenka.votingsystem.to.ResponseMessage;
 import com.azarenka.votingsystem.to.RestaurantTo;
 import com.azarenka.votingsystem.util.TimeUtil;
 
@@ -101,20 +101,21 @@ public class RestaurantController {
      */
     @PostMapping(value = "/{id}/menu")
     @PreAuthorize("hasRole('ROLE_ADMIN') and" + "@menuValidator.checkInsertMenuData(#menu, #id)")
-    public ResponseEntity<?> saveRestaurantsMenu(@PathVariable("id") String id, @Valid @RequestBody MealTo menu) {
-        restaurantService.save(menu);
-        return new ResponseEntity<>(new ResponseMessage("Created"), HttpStatus.CREATED);
+    public ResponseEntity<MealTo> saveRestaurantsMenu(@PathVariable("id") String id, @Valid @RequestBody MealTo menu) {
+        return new ResponseEntity<>(restaurantService.save(menu), HttpStatus.CREATED);
     }
 
     /**
-     * @param id
-     * @param date
-     * @return
+     * Returns menu by date and restaurant id.
+     *
+     * @param id   unique identifier
+     * @param date date
+     * @return inst
      */
     @GetMapping(value = "/{id}/history/{date}")
-    public ResponseEntity<?> getHistoryMenuByRestaurantIdAndDate(@PathVariable("id") String id, @PathVariable("date")
-        String date) {
-        return new ResponseEntity<>(restaurantAuditRepository.getByDateAndRestaurantsId(TimeUtil.getDate(date), id),
-            HttpStatus.OK);
+    public ResponseEntity<HistoryMenuTo> getHistoryMenuByRestaurantIdAndDate(
+        @PathVariable("id") String id, @PathVariable("date") String date) {
+        return new ResponseEntity<>(new HistoryMenuTo(
+            restaurantAuditRepository.getByDateAndRestaurantId(TimeUtil.getDate(date), id)), HttpStatus.OK);
     }
 }
