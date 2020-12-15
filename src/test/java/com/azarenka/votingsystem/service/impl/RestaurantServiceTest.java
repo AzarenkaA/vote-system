@@ -148,22 +148,14 @@ public class RestaurantServiceTest {
         List<Restaurant> restaurants = Collections.singletonList(buildRestaurant());
         actualMeal.setRestaurants(restaurants);
         assertEquals(expectedMeal, actualMeal);
-        User user = new User();
-        user.setEmail("Admin@mail.ru");
-        user.setId("0ab6bb94-e9d2-4c75-9806-ac78735ebc63");
         when(restaurantRepository.findAllById(mealTo.getRestaurantsIds())).thenReturn(restaurants);
-        when(userRepository.getByEmail("Admin@mail.ru")).thenReturn(user);
-        when(restaurantRepository.findAllById(mealTo.getRestaurantsIds())).thenReturn(restaurants);
-        when(UserPrincipal.safeGet()).thenReturn(userPrincipal);
-        when(userPrincipal.getEmail()).thenReturn("Admin@mail.ru");
-        actualMeal.setRestaurants(restaurants);
-        actualMeal.setUpdatedDate(LocalDateTime.now());
-        actualMeal.setUpdatedUser(user.getEmail());
+        when(mealRepository.save(actualMeal)).thenReturn(actualMeal);
         Set<RestaurantAudit> expectedRestAudit = buildRestaurantsAudit();
         when(auditRepository.saveAll(expectedRestAudit)).thenReturn(new ArrayList<>(buildRestaurantsAudit()));
         restaurantService.save(mealTo);
         verify(restaurantRepository).findAllById(Collections.singleton("d52a0f16-665a-4134-9bd9-2a6722ef15ed"));
-        verify(voteRepository);
+        verify(mealRepository).save(actualMeal);
+        verify(auditRepository).saveAll(expectedRestAudit);
     }
 
     private MealTo buildMealTo() {
@@ -208,7 +200,7 @@ public class RestaurantServiceTest {
         audit.setId("306faca2-2663-401e-b06e-5ff4c98c6b35");
         Meal meal = buildMeal();
         meal.setId("306faca2-2663-401e-b06e-5ff4c98c6b35");
-        audit.setMeals(Collections.singleton(meal));
+        audit.setHistoryMeals(Collections.singleton(meal));
         audit.setDate(LocalDate.now());
         audit.setRestaurant(buildRestaurant());
         return new HashSet<>(Collections.singleton(audit));

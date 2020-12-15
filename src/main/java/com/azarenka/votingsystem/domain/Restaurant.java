@@ -1,5 +1,7 @@
 package com.azarenka.votingsystem.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,13 +32,19 @@ public class Restaurant extends BaseEntity {
     @Column(name = "title", unique = true)
     private String title;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "meal_to_restaurant_map", joinColumns = {
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "meal_to_restaurant_map", schema = "main", joinColumns = {
         @JoinColumn(name = "restaurant_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "meal_id", referencedColumnName = "id")})
+    @JsonIgnoreProperties(value = "restaurants", allowSetters = true)
     private Set<Meal> meals;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "restaurant",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true,
+        targetEntity = RestaurantAudit.class)
+    @JsonIgnoreProperties(value = "restaurant", allowSetters = true)
     private Set<RestaurantAudit> audit;
 
     public Set<RestaurantAudit> getAudit() {

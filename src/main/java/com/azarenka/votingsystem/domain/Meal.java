@@ -7,12 +7,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -34,16 +31,10 @@ public class Meal extends BaseEntity {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "meal_to_restaurant_map", schema = "main", joinColumns = {
-        @JoinColumn(name = "meal_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "restaurant_id", referencedColumnName = "id")})
+    @ManyToMany(mappedBy = "meals", fetch = FetchType.LAZY)
     private Set<Restaurant> restaurants;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "restaurant_audit_to_meal_map", schema = "main", joinColumns = {
-        @JoinColumn(name = "meal_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "audit_id", referencedColumnName = "id")})
+    @ManyToMany(mappedBy = "historyMeals", fetch = FetchType.LAZY)
     private Set<RestaurantAudit> audit;
 
     public Meal() {

@@ -9,12 +9,8 @@
     and history menu for each restaurant.
 
 #API
-###UserController
-  ### SignUp 
-  The system is an able to adds new users. System will registration of new user and gives him a ROLE_USER. User with 
-  admin role _ROLE_ADMIN_a already exist in the system.
   
-##UserController
+## UserController
 #### SignUp.
   The system is an able to adds new users. System will registration of new user and gives him a ROLE_USER. User with 
   admin role _ROLE_ADMIN_a already exist in the system.
@@ -177,3 +173,29 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
     {
         "message": "Created"
     }
+
+#### History menu of restaurant.
+Http method **GET**:
+mapping http://localhost:8080/api/restaurants/{id}/history/{date}
+
+   Date should be represents in a format YYY-mm-dd (2020-12-15)  
+   
+   Example of response:
+      
+       {
+           "restaurantTitle": "Tracktir",
+           "mealTos": [
+               {
+                   "id": "1fa8d229-df9c-47cd-aa81-15d3c2127e9a",
+                   "title": "newTitle3",
+                   "price": 50.00,
+                   "restaurantsIds": []
+               },
+               {
+                   "id": "5c89185a-fb38-4c6f-ab84-670e5119135b",
+                   "title": "newTitle-05",
+                   "price": 45.00,
+                   "restaurantsIds": []
+               }
+           ]
+       }

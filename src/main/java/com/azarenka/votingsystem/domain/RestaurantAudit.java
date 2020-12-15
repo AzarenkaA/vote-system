@@ -34,9 +34,9 @@ public class RestaurantAudit extends BaseEntity {
     @JoinTable(name = "restaurant_audit_to_meal_map", schema = "main", joinColumns = {
         @JoinColumn(name = "audit_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "meal_id", referencedColumnName = "id")})
-    private Set<Meal> meals;
+    private Set<Meal> historyMeals;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
@@ -56,11 +56,11 @@ public class RestaurantAudit extends BaseEntity {
         this.restaurant = restaurant;
     }
 
-    public Set<Meal> getMeals() {
-        return meals;
+    public Set<Meal> getHistoryMeals() {
+        return historyMeals;
     }
 
-    public void setMeals(Collection<Meal> audit) {
-        this.meals = new HashSet<>(audit);
+    public void setHistoryMeals(Collection<Meal> audit) {
+        this.historyMeals = new HashSet<>(audit);
     }
 }

@@ -3,7 +3,6 @@ package com.azarenka.votingsystem.repository;
 import com.azarenka.votingsystem.domain.RestaurantAudit;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -22,11 +21,7 @@ import java.util.Set;
 @Repository
 public interface IRestaurantAuditRepository extends JpaRepository<RestaurantAudit, String> {
 
-    @Query("select r from RestaurantAudit r join fetch r.meals mr where mr.id = :id")
-    Set<RestaurantAudit> getAuditByMenuId(@Param("id") String id);
+    RestaurantAudit getByDateAndRestaurantId(@Param("date") LocalDate date, @Param("id") String id);
 
-    RestaurantAudit getByDateAndRestaurantsId(@Param("date")LocalDate date, @Param("id") String id);
-
-    @Query("select r from RestaurantAudit r join fetch r.meals mr where mr.id = :id and mr.date = :date")
-    Set<RestaurantAudit> getAuditByMenuIdAndDate(String id, LocalDate date);
+    Set<RestaurantAudit> getAllByDate(LocalDate date);
 }
