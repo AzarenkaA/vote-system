@@ -183,4 +183,121 @@
             ('53f2216f-f64d-4c81-abb4-9298fca97828', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM')
         </sql>
     </changeSet>
+
+    <changeSet id="2020-12-16-00" author="Anton Azarenka">
+        <comment>insert audit meal</comment>
+        <sql>
+            insert into main.restaurant_audit (id, restaurant_id, created_user) VALUES
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', 'fd7ffad2-426c-42fe-9908-f053a882a4f7', 'SYSTEM'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', '0143508d-8658-4741-85cf-682a5d4bc344', 'SYSTEM'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', '1d4e58fd-6cff-46ff-832f-4be66ee7948a', 'SYSTEM'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', '19549004-fd0b-4a73-b7e3-4e2d73b846e7', 'SYSTEM'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', '0317ebef-c700-4bc6-b3d5-3022bf824aea', 'SYSTEM'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', '46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'SYSTEM'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', '50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'SYSTEM'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', '886d694b-3219-4998-a60f-64c54778f4a8', 'SYSTEM'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', '15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'SYSTEM')
+        </sql>
+        <sql>
+            insert into main.restaurant_audit_to_meal_map(audit_id, meal_id) VALUES
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', '59b80d53-7a70-4a97-835d-2154187eeebb'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', 'a6a84e78-c667-4346-9c44-0c44d2782f4d'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', 'b50009f2-ede7-4d33-9038-d307d8865ccb'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', 'a2a0021a-4851-453a-bef5-eb7e40112bdc'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', '5a7f36f9-9dd9-48e7-9be4-60103c3d862c'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', 'd5f1696a-d89c-4112-9f10-5df048e683a6'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('2a1de372-e7f5-4d87-8998-fc7792d35d48', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', '59b80d53-7a70-4a97-835d-2154187eeebb'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', 'a6a84e78-c667-4346-9c44-0c44d2782f4d'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', '29d57d97-001b-45bf-805c-bd8f7094fe07'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', 'b50009f2-ede7-4d33-9038-d307d8865ccb'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', 'f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', '9dae0367-50f4-4e18-8224-69b03773a7dd'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', '01f43e34-971d-4736-aad8-05b9b4b89fb3'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', '68f5a84d-2b6a-4cc6-ab7d-864aa38a4bd3'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', 'fd183f31-4251-41f5-87bf-11b479031aa0'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('1175dc9e-384f-4dfb-b4fc-42b80fbd18fd', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', 'a6a84e78-c667-4346-9c44-0c44d2782f4d'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', '29d57d97-001b-45bf-805c-bd8f7094fe07'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', '1e26853c-01e3-4ab0-a407-7b5ab68af3ca'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', '68f5a84d-2b6a-4cc6-ab7d-864aa38a4bd3'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', 'd5f1696a-d89c-4112-9f10-5df048e683a6'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', 'fd183f31-4251-41f5-87bf-11b479031aa0'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('bc957680-0451-4088-8bff-32b1baaf7eae', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('a062af02-7352-464d-b716-03d5cda5204d', '59b80d53-7a70-4a97-835d-2154187eeebb'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', 'a6a84e78-c667-4346-9c44-0c44d2782f4d'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', 'a6a84e78-c667-4346-9c44-0c44d2782f4d'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', '29d57d97-001b-45bf-805c-bd8f7094fe07'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', '29d57d97-001b-45bf-805c-bd8f7094fe07'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', '1e26853c-01e3-4ab0-a407-7b5ab68af3ca'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', 'a2a0021a-4851-453a-bef5-eb7e40112bdc'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', '562ee1c8-abb4-4ca9-9455-e785fc60d581'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('a062af02-7352-464d-b716-03d5cda5204d', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', '29d57d97-001b-45bf-805c-bd8f7094fe07'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', '1e26853c-01e3-4ab0-a407-7b5ab68af3ca'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', '9c9662c9-a179-4b3a-b765-6b4841acc252'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', '5a7f36f9-9dd9-48e7-9be4-60103c3d862c'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', '7ada4488-d251-4bdd-923f-2240dd2b3019'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('3e5e6956-7547-46db-8d28-a2a93d6e1dbc', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', 'f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', '9dae0367-50f4-4e18-8224-69b03773a7dd'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', '45f69d67-c4ea-43e8-bc7b-9055a74b2ec3'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', 'd5f1696a-d89c-4112-9f10-5df048e683a6'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', '2e19651c-a27e-41a9-8b52-d44c8b0750e2'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', '4c026567-e3bb-4fcf-84bf-349831c3ccd7'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', 'c0cd30e5-19a9-4af2-97bf-e531d0a43840'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('474fc1b5-2913-4d7f-8c44-4460038fe242', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', 'f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', '45f69d67-c4ea-43e8-bc7b-9055a74b2ec3'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', 'd5f1696a-d89c-4112-9f10-5df048e683a6'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', 'a5994936-e12f-4b3e-bde1-da49b16f468a'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', '2e19651c-a27e-41a9-8b52-d44c8b0750e2'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', '4c026567-e3bb-4fcf-84bf-349831c3ccd7'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', '4c026567-e3bb-4fcf-84bf-349831c3ccd7'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', 'c0cd30e5-19a9-4af2-97bf-e531d0a43840'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('bb5cc615-db9d-4e7c-86e5-a2b53745afca', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', 'f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', '9dae0367-50f4-4e18-8224-69b03773a7dd'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', '562ee1c8-abb4-4ca9-9455-e785fc60d581'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', '7ada4488-d251-4bdd-923f-2240dd2b3019'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', 'a5994936-e12f-4b3e-bde1-da49b16f468a'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', '2e19651c-a27e-41a9-8b52-d44c8b0750e2'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', '4c026567-e3bb-4fcf-84bf-349831c3ccd7'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', 'c0cd30e5-19a9-4af2-97bf-e531d0a43840'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('bcbab903-00b0-4428-a892-bbadd124b28c', '53f2216f-f64d-4c81-abb4-9298fca97828'),
+
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', '59b80d53-7a70-4a97-835d-2154187eeebb'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', 'dd234ebe-0f35-4a49-9433-c7359be1e299'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', '9c9662c9-a179-4b3a-b765-6b4841acc252'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', 'a2a0021a-4851-453a-bef5-eb7e40112bdc'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', '01f43e34-971d-4736-aad8-05b9b4b89fb3'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', '45f69d67-c4ea-43e8-bc7b-9055a74b2ec3'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', 'a5994936-e12f-4b3e-bde1-da49b16f468a'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', 'a1490a58-b5e5-4264-ac5e-286f655679ed'),
+            ('e03d0b5c-94e1-4795-bd64-9684427658a6', '53f2216f-f64d-4c81-abb4-9298fca97828')
+        </sql>
+    </changeSet>
 </databaseChangeLog>
