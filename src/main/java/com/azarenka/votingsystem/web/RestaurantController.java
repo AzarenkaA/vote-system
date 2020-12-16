@@ -8,6 +8,7 @@ import com.azarenka.votingsystem.service.api.IRestaurantService;
 import com.azarenka.votingsystem.to.HistoryMenuTo;
 import com.azarenka.votingsystem.to.MealTo;
 import com.azarenka.votingsystem.to.RestaurantTo;
+import com.azarenka.votingsystem.to.VoteTo;
 import com.azarenka.votingsystem.util.TimeUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,5 +118,16 @@ public class RestaurantController {
         @PathVariable("id") String id, @PathVariable("date") String date) {
         return new ResponseEntity<>(new HistoryMenuTo(
             restaurantAuditRepository.getByDateAndRestaurantId(TimeUtil.getDate(date), id)), HttpStatus.OK);
+    }
+
+    /**
+     * Returns votes of restaurant.
+     *
+     * @param id unique identifier of {@link Restaurant}
+     * @return instance of {@link VoteTo}
+     */
+    @GetMapping(value = "/{id}/votes")
+    public VoteTo getVote(@PathVariable("id") String id) {
+        return restaurantService.getVotesByRestaurantId(id);
     }
 }

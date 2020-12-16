@@ -178,7 +178,7 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
 Http method **GET**:
 mapping http://localhost:8080/api/restaurants/{id}/history/{date}
 
-   Date should be represents in a format YYY-mm-dd (2020-12-15)  
+   Date should be represented in a format YYY-mm-dd (2020-12-15)  
    
    Example of response:
       
@@ -199,3 +199,15 @@ mapping http://localhost:8080/api/restaurants/{id}/history/{date}
                }
            ]
        }
+       
+#### Get votes of restaurant.
+Http method **GET**:
+mapping http://localhost:8080/api/restaurants/{id}/votes
+
+ Example of response:
+     
+     {
+         "restaurantName": "Brevis",
+         "countOfVotes": 2
+     }
+     
