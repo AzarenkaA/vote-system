@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RunWith(PowerMockRunner.class)
@@ -156,6 +157,17 @@ public class RestaurantServiceTest {
         verify(restaurantRepository).findAllById(Collections.singleton("d52a0f16-665a-4134-9bd9-2a6722ef15ed"));
         verify(mealRepository).save(actualMeal);
         verify(auditRepository).saveAll(expectedRestAudit);
+    }
+
+    @Test
+    public void testGetVotesByRestaurantId() {
+        List<Vote> votes = buildVotes(LocalDateTime.now(), null);
+        when(voteRepository.findByRestaurantId("74a94833-0504-43be-b64c-49456392969a")).thenReturn(votes);
+        Optional<Restaurant> optionalRestaurant = Optional.of(buildRestaurant());
+        when(restaurantRepository.findById("74a94833-0504-43be-b64c-49456392969a")).thenReturn(optionalRestaurant);
+        restaurantService.getVotesByRestaurantId("74a94833-0504-43be-b64c-49456392969a");
+        verify(voteRepository).findByRestaurantId("74a94833-0504-43be-b64c-49456392969a");
+        verify(restaurantRepository);
     }
 
     private MealTo buildMealTo() {

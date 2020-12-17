@@ -14,6 +14,7 @@ import com.azarenka.votingsystem.repository.IVoteRepository;
 import com.azarenka.votingsystem.service.api.IRestaurantService;
 import com.azarenka.votingsystem.to.MealTo;
 import com.azarenka.votingsystem.to.ResponseMessage;
+import com.azarenka.votingsystem.to.VoteTo;
 import com.azarenka.votingsystem.util.KeyGenerator;
 import com.azarenka.votingsystem.util.TimeUtil;
 
@@ -57,6 +58,7 @@ public class RestaurantService implements IRestaurantService {
     @Autowired
     private IRestaurantAuditRepository auditRepository;
 
+    @Override
     @Transactional
     public ResponseMessage toVote(String restaurantId) {
         User user = userRepository.getByEmail(Objects.requireNonNull(UserPrincipal.safeGet()).getEmail());
@@ -82,13 +84,14 @@ public class RestaurantService implements IRestaurantService {
     }
 
     @Override
+    @Transactional
     public MealTo save(MealTo mealTo) {
         LOGGER.info("Start create menu with title {} ", mealTo.getTitle());
         mealTo.setId(KeyGenerator.generateUuid());
         Meal meal = new Meal(mealTo);
         meal.setRestaurants(restaurantRepository.findAllById(mealTo.getRestaurantsIds()));
         Meal createdMenu = mealRepository.save(meal);
-        Set<RestaurantAudit> restaurantAudits = prepareDateForAudit(mealTo, meal);
+        Set<RestaurantAudit> restaurantAudits = prepareDateForUpdateAudit(mealTo, meal);
         if (restaurantAudits.size() > 0) {
             auditRepository.saveAll(restaurantAudits);
         } else {
@@ -99,6 +102,7 @@ public class RestaurantService implements IRestaurantService {
     }
 
     @Override
+    @Transactional
     public MealTo update(MealTo mealTo) {
         LOGGER.info("Start update menu with id {} ", mealTo.getId());
         Meal meal = new Meal(mealTo);
@@ -107,10 +111,21 @@ public class RestaurantService implements IRestaurantService {
         meal.setUpdatedDate(LocalDateTime.now());
         meal.setRecordVersion(meal.getRecordVersion() + 1);
         MealTo updatedMenu = new MealTo(mealRepository.save(meal));
-        Set<RestaurantAudit> restaurantAudits = prepareDateForAudit(mealTo, meal);
+        Set<RestaurantAudit> restaurantAudits = prepareDateForUpdateAudit(mealTo, meal);
         auditRepository.saveAll(restaurantAudits);
         LOGGER.info("Menu has been updated with id {} ", meal.getId());
         return updatedMenu;
+    }
+
+    @Override
+    public VoteTo getVotesByRestaurantId(String restaurantId) {
+        List<Vote> votes = voteRepository.findByRestaurantId(restaurantId);
+        long count = votes.stream()
+            .filter(
+                vote -> TimeUtil.dateToString(vote.getCreatedDate()).equals(TimeUtil.dateToString(LocalDateTime.now())))
+            .count();
+        Restaurant restaurant = restaurantRepository.findById(restaurantId).get();
+        return new VoteTo(restaurant.getTitle(), count);
     }
 
     private Vote getTodayVote(List<Vote> votes) {
@@ -126,7 +141,7 @@ public class RestaurantService implements IRestaurantService {
             : vote.getUpdatedDate().toLocalTime();
     }
 
-    private Set<RestaurantAudit> prepareDateForAudit(MealTo mealTo, Meal newMeal) {
+    private Set<RestaurantAudit> prepareDateForUpdateAudit(MealTo mealTo, Meal newMeal) {
         Set<RestaurantAudit> restaurantAudits = auditRepository.getAllByDate(LocalDate.now());
         for (String id : mealTo.getRestaurantsIds()) {
             restaurantAudits = restaurantAudits.stream()

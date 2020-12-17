@@ -21,6 +21,9 @@ import java.util.List;
 @Repository
 public interface IVoteRepository extends JpaRepository<Vote, String> {
 
-    @Query("select v from Vote v  where v.userId = :id")
+    @Query("select v from Vote v where v.userId = :id")
     List<Vote> findByUserId(@Param("id")String id);
+
+    @Query("select v from Vote v where v.restaurantId = :id")
+    List<Vote> findByRestaurantId(@Param("id") String id);
 }
