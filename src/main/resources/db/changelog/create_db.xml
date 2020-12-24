@@ -159,7 +159,7 @@
             <column name="id" type="varchar(256)">
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
-            <column name="menu_date" type="timestamp" defaultValue="CURRENT_TIMESTAMP">
+            <column name="menu_date" type="timestamp" defaultValue="CURRENT_DATE">
                 <constraints nullable="false"/>
             </column>
             <column name="record_version" type="int" defaultValue='1'/>
