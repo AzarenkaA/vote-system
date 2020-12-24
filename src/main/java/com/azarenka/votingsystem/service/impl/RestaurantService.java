@@ -118,11 +118,10 @@ public class RestaurantService implements IRestaurantService {
     }
 
     @Override
-    public VoteTo getVotesByRestaurantId(String restaurantId) {
+    public VoteTo getVotesByRestaurantIdAndDate(String restaurantId, String date) {
         List<Vote> votes = voteRepository.findByRestaurantId(restaurantId);
         long count = votes.stream()
-            .filter(
-                vote -> TimeUtil.dateToString(vote.getCreatedDate()).equals(TimeUtil.dateToString(LocalDateTime.now())))
+            .filter(vote -> TimeUtil.dateToString(vote.getCreatedDate()).equals(date))
             .count();
         Restaurant restaurant = restaurantRepository.findById(restaurantId).get();
         return new VoteTo(restaurant.getTitle(), count);

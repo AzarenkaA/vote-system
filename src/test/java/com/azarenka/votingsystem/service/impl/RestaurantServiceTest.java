@@ -18,6 +18,7 @@ import com.azarenka.votingsystem.repository.IUserRepository;
 import com.azarenka.votingsystem.repository.IVoteRepository;
 import com.azarenka.votingsystem.to.MealTo;
 import com.azarenka.votingsystem.util.KeyGenerator;
+import com.azarenka.votingsystem.util.TimeUtil;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -165,7 +166,8 @@ public class RestaurantServiceTest {
         when(voteRepository.findByRestaurantId("74a94833-0504-43be-b64c-49456392969a")).thenReturn(votes);
         Optional<Restaurant> optionalRestaurant = Optional.of(buildRestaurant());
         when(restaurantRepository.findById("74a94833-0504-43be-b64c-49456392969a")).thenReturn(optionalRestaurant);
-        restaurantService.getVotesByRestaurantId("74a94833-0504-43be-b64c-49456392969a");
+        restaurantService.getVotesByRestaurantIdAndDate("74a94833-0504-43be-b64c-49456392969a",
+            TimeUtil.dateToString(LocalDateTime.now()));
         verify(voteRepository).findByRestaurantId("74a94833-0504-43be-b64c-49456392969a");
         verify(restaurantRepository);
     }
