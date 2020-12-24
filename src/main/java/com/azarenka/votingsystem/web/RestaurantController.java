@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -114,20 +115,33 @@ public class RestaurantController {
      * @return inst
      */
     @GetMapping(value = "/{id}/history/{date}")
-    public ResponseEntity<HistoryMenuTo> getHistoryMenuByRestaurantIdAndDate(
-        @PathVariable("id") String id, @PathVariable("date") String date) {
+    public ResponseEntity<HistoryMenuTo> getHistoryMenuByRestaurantIdAndDate(@PathVariable("id") String id,
+                                                                             @PathVariable("date") String date) {
         return new ResponseEntity<>(new HistoryMenuTo(
             restaurantAuditRepository.getByDateAndRestaurantId(TimeUtil.getDate(date), id)), HttpStatus.OK);
     }
 
     /**
-     * Returns votes of restaurant.
+     * Returns votes of restaurant by current date.
      *
      * @param id unique identifier of {@link Restaurant}
      * @return instance of {@link VoteTo}
      */
     @GetMapping(value = "/{id}/votes")
-    public VoteTo getVote(@PathVariable("id") String id) {
-        return restaurantService.getVotesByRestaurantId(id);
+    public VoteTo getVotesById(@PathVariable("id") String id) {
+        return restaurantService.getVotesByRestaurantIdAndDate(id, TimeUtil.dateToString(LocalDateTime.now()));
+    }
+
+    /**
+     * Returns votes of restaurant by date.
+     *
+     * @param id   unique identifier of {@link Restaurant}
+     * @param date date on string format
+     * @return instance of {@link VoteTo}
+     */
+    @GetMapping(value = "/{id}/votes/{date}")
+    public VoteTo getVotesByIdAndDate(@PathVariable("id") String id,
+                                      @PathVariable("date") String date) {
+        return restaurantService.getVotesByRestaurantIdAndDate(id ,date);
     }
 }

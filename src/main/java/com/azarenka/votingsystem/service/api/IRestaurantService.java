@@ -21,5 +21,5 @@ public interface IRestaurantService {
 
     MealTo update(MealTo mealTo);
 
-    VoteTo getVotesByRestaurantId(String id);
+    VoteTo getVotesByRestaurantIdAndDate(String id, String date);
 }
