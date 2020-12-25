@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
 import javax.annotation.Resource;
 
 /**
- * Test for Meal Repository.
+ * Test for Vote Repository.
  * <p>
  * (c) ant-azarenko@mail.ru 2020
  * </p>

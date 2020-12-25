@@ -38,7 +38,7 @@
 
         <insert tableName="users" schemaName="main">
             <column name="id" value="59ad497a-c2bf-425e-a129-709dc3d10b27"/>
-            <column name="email" value="user@user2.com"/>
+            <column name="email" value="Voteuser@user.com"/>
             <column name="password" value="password"/>
             <column name="enabled" value="false"/>
             <column name="created_user" value="system"/>

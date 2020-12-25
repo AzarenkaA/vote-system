@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2020-12-24-20" author="Anton Azarenka">
+        <comment>Add date to testGetByDateAndRestaurantId</comment>
+
+     <insert tableName="restaurant_audit" schemaName="main">
+         <column name="id" value="b318acd0-a396-4339-b271-416c161ca6c2"/>
+         <column name="restaurant_id" value="fd7ffad2-426c-42fe-9908-f053a882a4f7"/>
+         <column name="menu_date" value="2020-12-12"/>
+         <column name="created_user" value="system"/>
+     </insert>
+
+        <insert tableName="restaurant_audit_to_meal_map" schemaName="main">
+            <column name="audit_id" value="b318acd0-a396-4339-b271-416c161ca6c2"/>
+            <column name="meal_id" value="a2a0021a-4851-453a-bef5-eb7e40112bdc"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
