@@ -2,11 +2,12 @@ package com.azarenka.votingsystem.to;
 
 import com.azarenka.votingsystem.domain.RestaurantAudit;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Hestory menu transfer object.
+ * History menu transfer object.
  * <p>
  * (c) ant-azarenko@mail.ru 2020
  * </p>
@@ -20,8 +21,10 @@ public class HistoryMenuTo {
     private Set<MealTo> mealTos;
 
     public HistoryMenuTo(RestaurantAudit audit) {
-        this.restaurantTitle = audit.getRestaurant().getTitle();
-        this.mealTos = audit.getHistoryMeals().stream().map(MealTo::new).collect(Collectors.toSet());
+        if(Objects.nonNull(audit)) {
+            this.restaurantTitle = audit.getRestaurant().getTitle();
+            this.mealTos = audit.getHistoryMeals().stream().map(MealTo::new).collect(Collectors.toSet());
+        }
     }
 
     public String getRestaurantTitle() {

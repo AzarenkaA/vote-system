@@ -12,6 +12,8 @@ import com.azarenka.votingsystem.to.VoteTo;
 import com.azarenka.votingsystem.util.TimeUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -60,6 +62,7 @@ public class RestaurantController {
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @Cacheable(value = "restaurant")
     public List<RestaurantTo> getRestaurants() {
         return restaurantRepository.findAll()
             .stream()
@@ -103,6 +106,7 @@ public class RestaurantController {
      */
     @PostMapping(value = "/{id}/menu")
     @PreAuthorize("hasRole('ROLE_ADMIN') and" + "@menuValidator.checkInsertMenuData(#menu, #id)")
+    @CacheEvict(allEntries = true, value = "restaurant")
     public ResponseEntity<MealTo> saveRestaurantsMenu(@PathVariable("id") String id, @Valid @RequestBody MealTo menu) {
         return new ResponseEntity<>(restaurantService.save(menu), HttpStatus.CREATED);
     }
@@ -142,6 +146,6 @@ public class RestaurantController {
     @GetMapping(value = "/{id}/votes/{date}")
     public VoteTo getVotesByIdAndDate(@PathVariable("id") String id,
                                       @PathVariable("date") String date) {
-        return restaurantService.getVotesByRestaurantIdAndDate(id ,date);
+        return restaurantService.getVotesByRestaurantIdAndDate(id, date);
     }
 }

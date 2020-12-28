@@ -28,7 +28,7 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@TestPropertySource(properties = "spring.liquibase.change-log=classpath:changelog/vote-test-date.xml")
+@TestPropertySource(properties = "spring.liquibase.change-log=classpath:changelog/vote-test-data.xml")
 public class VoteRepositoryIntegrationTest {
 
     @Resource

@@ -32,7 +32,7 @@
             ('0317ebef-c700-4bc6-b3d5-3022bf824aea', 'Batsckova Hata', 'SYSTEM'),
             ('46e1d5b5-6d38-4c75-995b-f8a0863f40bb', 'KFC', 'SYSTEM'),
             ('50362ff9-ffa1-4c39-8d60-07ccebbbb30e', 'McDonalds', 'SYSTEM'),
-            ('886d694b-3219-4998-a60f-64c54778f4a8', 'Berger King', 'SYSTEM'),
+            ('886d694b-3219-4998-a60f-64c54778f4a8', 'Burger King', 'SYSTEM'),
             ('15fa1690-9522-4a00-938f-c4a6d4e3cf73', 'Angle90', 'SYSTEM')
         </sql>
     </changeSet>

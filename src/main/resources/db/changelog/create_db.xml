@@ -198,5 +198,8 @@
                              referencedTableSchemaName="main"/>
             </column>
         </createTable>
+        <modifySql dbms="mysql">
+            <append value="ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
+        </modifySql>
     </changeSet>
 </databaseChangeLog>

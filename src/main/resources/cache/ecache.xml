@@ -1,0 +1,4 @@
+<ehcache>
+    <cache name="com.azarenka.votingsystem.domain.Restaurant" maxElementsInMemory="1000" />
+    <cache name="com.azarenka.votingsystem.domain.User" maxElementsInMemory="1000" />
+</ehcache>

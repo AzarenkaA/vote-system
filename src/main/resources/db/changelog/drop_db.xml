@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2020-00-00-00" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="role" schemaName="main"/>
+        </preConditions>
+        <dropTable tableName="role" schemaName="main"/>
+    </changeSet>
+
+    <changeSet id="2020-00-00-01" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="main" tableName="users"/>
+        </preConditions>
+        <dropTable tableName="users" cascadeConstraints="true" schemaName="main"/>
+    </changeSet>
+
+    <changeSet id="2020-00-00-02" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="main" tableName="meal"/>
+        </preConditions>
+        <dropTable tableName="meal" cascadeConstraints="true" schemaName="main"/>
+    </changeSet>
+
+    <changeSet id="2020-00-00-03" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="main" tableName="restaurant"/>
+        </preConditions>
+        <dropTable tableName="restaurant" cascadeConstraints="true" schemaName="main"/>
+    </changeSet>
+
+    <changeSet id="2020-00-00-04" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="main" tableName="restaurant_audit"/>
+        </preConditions>
+        <dropTable tableName="restaurant_audit" cascadeConstraints="true" schemaName="main"/>
+    </changeSet>
+
+    <changeSet id="2020-00-00-05" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="main" tableName="restaurant_audit_to_meal_map"/>
+        </preConditions>
+        <dropTable tableName="restaurant_audit_to_meal_map" cascadeConstraints="true" schemaName="main"/>
+    </changeSet>
+
+    <changeSet id="2020-00-00-06" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="main" tableName="meal_to_restaurant_map"/>
+        </preConditions>
+        <dropTable tableName="meal_to_restaurant_map" cascadeConstraints="true" schemaName="main"/>
+    </changeSet>
+
+    <changeSet id="2020-00-00-07" author="Anton Azarenka">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="main" tableName="vote"/>
+        </preConditions>
+        <dropTable tableName="vote" cascadeConstraints="true" schemaName="main"/>
+    </changeSet>
+</databaseChangeLog>

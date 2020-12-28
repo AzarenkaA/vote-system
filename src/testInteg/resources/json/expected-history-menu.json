@@ -1,0 +1,134 @@
+{
+  "restaurantTitle": "Burger King",
+  "mealTos": [
+    {
+      "id": "4c026567-e3bb-4fcf-84bf-349831c3ccd7",
+      "title": "БигМак",
+      "price": 15.40,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "886d694b-3219-4998-a60f-64c54778f4a8"
+      ]
+    },
+    {
+      "id": "9dae0367-50f4-4e18-8224-69b03773a7dd",
+      "title": "Макароны отварные",
+      "price": 2.22,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "886d694b-3219-4998-a60f-64c54778f4a8",
+        "0143508d-8658-4741-85cf-682a5d4bc344"
+      ]
+    },
+    {
+      "id": "f7f8fcfa-18b4-46ba-8930-a5b4d4346b0c",
+      "title": "Жареный картофель",
+      "price": 2.50,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "886d694b-3219-4998-a60f-64c54778f4a8",
+        "0143508d-8658-4741-85cf-682a5d4bc344"
+      ]
+    },
+
+    {
+      "id": "c0cd30e5-19a9-4af2-97bf-e531d0a43840",
+      "title": "Цезарь ролл",
+      "price": 13.50,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "886d694b-3219-4998-a60f-64c54778f4a8"
+      ]
+    },
+    {
+      "id": "53f2216f-f64d-4c81-abb4-9298fca97828",
+      "title": "Кофе",
+      "price": 3.45,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "1d4e58fd-6cff-46ff-832f-4be66ee7948a",
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "15fa1690-9522-4a00-938f-c4a6d4e3cf73",
+        "19549004-fd0b-4a73-b7e3-4e2d73b846e7",
+        "0317ebef-c700-4bc6-b3d5-3022bf824aea",
+        "fd7ffad2-426c-42fe-9908-f053a882a4f7",
+        "886d694b-3219-4998-a60f-64c54778f4a8",
+        "0143508d-8658-4741-85cf-682a5d4bc344"
+      ]
+    },
+    {
+      "id": "7ada4488-d251-4bdd-923f-2240dd2b3019",
+      "title": "Щи",
+      "price": 1.70,
+      "restaurantsIds": [
+        "0317ebef-c700-4bc6-b3d5-3022bf824aea",
+        "886d694b-3219-4998-a60f-64c54778f4a8"
+      ]
+    },
+    {
+      "id": "562ee1c8-abb4-4ca9-9455-e785fc60d581",
+      "title": "Холодник",
+      "price": 1.50,
+      "restaurantsIds": [
+        "19549004-fd0b-4a73-b7e3-4e2d73b846e7",
+        "886d694b-3219-4998-a60f-64c54778f4a8"
+      ]
+    },
+    {
+      "id": "dd234ebe-0f35-4a49-9433-c7359be1e299",
+      "title": "Салат ореховый",
+      "price": 4.44,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "1d4e58fd-6cff-46ff-832f-4be66ee7948a",
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "15fa1690-9522-4a00-938f-c4a6d4e3cf73",
+        "19549004-fd0b-4a73-b7e3-4e2d73b846e7",
+        "0317ebef-c700-4bc6-b3d5-3022bf824aea",
+        "fd7ffad2-426c-42fe-9908-f053a882a4f7",
+        "886d694b-3219-4998-a60f-64c54778f4a8",
+        "0143508d-8658-4741-85cf-682a5d4bc344"
+      ]
+    },
+    {
+      "id": "a5994936-e12f-4b3e-bde1-da49b16f468a",
+      "title": "Филе курицы в сыре",
+      "price": 12.80,
+      "restaurantsIds": [
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "15fa1690-9522-4a00-938f-c4a6d4e3cf73",
+        "886d694b-3219-4998-a60f-64c54778f4a8"
+      ]
+    },
+
+    {
+      "id": "a1490a58-b5e5-4264-ac5e-286f655679ed",
+      "title": "Кола",
+      "price": 5.00,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "1d4e58fd-6cff-46ff-832f-4be66ee7948a",
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "15fa1690-9522-4a00-938f-c4a6d4e3cf73",
+        "19549004-fd0b-4a73-b7e3-4e2d73b846e7",
+        "0317ebef-c700-4bc6-b3d5-3022bf824aea",
+        "fd7ffad2-426c-42fe-9908-f053a882a4f7",
+        "886d694b-3219-4998-a60f-64c54778f4a8",
+        "0143508d-8658-4741-85cf-682a5d4bc344"
+      ]
+    },
+    {
+      "id": "2e19651c-a27e-41a9-8b52-d44c8b0750e2",
+      "title": "Стрипсы",
+      "price": 8.50,
+      "restaurantsIds": [
+        "46e1d5b5-6d38-4c75-995b-f8a0863f40bb",
+        "50362ff9-ffa1-4c39-8d60-07ccebbbb30e",
+        "886d694b-3219-4998-a60f-64c54778f4a8"
+      ]
+    }
+  ]
+}

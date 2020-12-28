@@ -2,10 +2,14 @@ package com.azarenka.votingsystem.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +30,8 @@ import javax.persistence.Table;
  * Date 22.11.2020
  */
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Table(name = "restaurant", schema = "main")
 public class Restaurant extends BaseEntity {
 

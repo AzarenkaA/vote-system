@@ -39,7 +39,7 @@ public class MealValidator {
     }
 
     public boolean checkUpdateMenuDataWithMultipleRest(MealTo mealTo) throws ValidatorException {
-        UpdateMenuValidator insertMenuValidator = new UpdateMenuValidator(menuRepository);
-        return insertMenuValidator.validate(mealTo);
+        UpdateMenuValidator updateMenuValidator = new UpdateMenuValidator(menuRepository);
+        return updateMenuValidator.validate(mealTo);
     }
 }
