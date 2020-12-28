@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2020-12-25-00" author="Anton Azarenka">
+        <comment>Add admin user for test</comment>
+        <sql>
+            insert into main.users
+            (id, email, password, enabled, name, created_user) values
+            ('61356ab6-2794-4970-954f-44a0a5d4e077', 'admin-test@mail.ru',
+            '$2a$10$dMA4vWKr5L7LbVzSb48PdeQLq8DdrQcz2j2Ma7zI7PPQnrUWarYzS', true, 'admin','system')
+        </sql>
+        <sql>
+            insert into main.role (user_id, role) values
+            ('61356ab6-2794-4970-954f-44a0a5d4e077','ROLE_ADMIN')
+        </sql>
+    </changeSet>
+
+    <changeSet id="2020-12-28-30" author="Anton Azarenka">
+        <sql>
+            insert into main.meal (id, title, price, created_user) VALUES
+            ('6562bbc1-a194-4043-a035-5fb2d3666889', 'Салат', '2.50', 'SYSTEM')
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "59b80d53-7a70-4a97-835d-2154187eeebb",
+    "title": "Салат из капусты",
+    "price": 2.50,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "a6a84e78-c667-4346-9c44-0c44d2782f4d",
+    "title": "Салат из море продуктов",
+    "price": 10.30,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "dd234ebe-0f35-4a49-9433-c7359be1e299",
+    "title": "Салат ореховый",
+    "price": 4.44,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "b50009f2-ede7-4d33-9038-d307d8865ccb",
+    "title": "Ципилины",
+    "price": 7.99,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "a2a0021a-4851-453a-bef5-eb7e40112bdc",
+    "title": "Картофельное пюре",
+    "price": 1.99,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "5a7f36f9-9dd9-48e7-9be4-60103c3d862c",
+    "title": "Суп из курицы",
+    "price": 2.00,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "d5f1696a-d89c-4112-9f10-5df048e683a6",
+    "title": "Мясо по французки",
+    "price": 10.50,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "a1490a58-b5e5-4264-ac5e-286f655679ed",
+    "title": "Кола",
+    "price": 5.00,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  },
+  {
+    "id": "53f2216f-f64d-4c81-abb4-9298fca97828",
+    "title": "Кофе",
+    "price": 3.45,
+    "restaurantsIds": [
+      "fd7ffad2-426c-42fe-9908-f053a882a4f7"
+    ]
+  }
+]

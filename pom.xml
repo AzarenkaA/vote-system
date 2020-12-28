@@ -32,6 +32,8 @@
         <junt.vintage.version>5.2.0</junt.vintage.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <junit-platform-surefire-provider.version>1.0.1</junit-platform-surefire-provider.version>
+        <http.client.version>4.5.6</http.client.version>
+        <cache.version>5.4.27.Final</cache.version>
     </properties>
 
     <dependencies>
@@ -56,13 +58,11 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache-commons-version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -91,6 +91,16 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${cache.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.3</version>
         </dependency>
         <!--TEST -->
         <dependency>
@@ -133,6 +143,12 @@
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
             <version>${junt.vintage.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${http.client.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

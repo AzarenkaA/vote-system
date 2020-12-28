@@ -41,26 +41,12 @@ public class MealController {
      * Saves new menu in database.
      * Permission has for only ADMIN role.
      * Method uses validator of incoming data to check exist in DB and valid data.
-     *
-     * mapping http://localhost:8080/api/menus
-     *
-     * Example:
-     * response: {
-     *      {
-     *          "id": "75a001ee-7b67-46a4-80ab-08a66a24ce7c",
-     *          "title": "title",
-     *          "price": "2.50",
-     *          "restaurantId: [
-     *              "668bb3c5-72b3-4db8-861a-80ba12a14865",
-     *              "c6eb4717-a99c-43f5-9712-8d7b3490de2c
-     *          ]
-     *      }
-     * }
+
      * @param menu instance of {@link MealTo}
      * @return instance of {@link ResponseEntity< MealTo >}
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ADMIN') and" + "@menuValidator.checkInsertMenuDataWithMultipleRest(#menu)")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN') and" + "@menuValidator.checkInsertMenuDataWithMultipleRest(#menu)")
     public ResponseEntity<MealTo> setMenuByRestaurant(@Valid @RequestBody MealTo menu) {
         return new ResponseEntity<>(menuService.save(menu), HttpStatus.OK);
     }
@@ -69,23 +55,9 @@ public class MealController {
      * Updates menu.
      * Permission has for only ADMIN role.
      * Method uses validator of incoming data to check exist in DB and valid data.
-     *
-     * mapping http://localhost:8080/api/menus
-     *
-     * Example:
-     * response: {
-     *      {
-     *          "id": "75a001ee-7b67-46a4-80ab-08a66a24ce7c",
-     *          "title": "title",
-     *          "price": "2.50",
-     *          "restaurantId: [
-     *              "668bb3c5-72b3-4db8-861a-80ba12a14865",
-     *              "c6eb4717-a99c-43f5-9712-8d7b3490de2c
-     *          ]
-     *      }
-     * }
+
      * @param menu instance
-     * @return instance of {@link ResponseEntity< MealTo >}
+     * @return instance of {@link ResponseEntity<MealTo>}
      */
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN') and" + "@menuValidator.checkUpdateMenuDataWithMultipleRest(#menu)")

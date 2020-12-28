@@ -2,6 +2,9 @@ package com.azarenka.votingsystem.domain;
 
 import com.azarenka.votingsystem.domain.auth.SignUpForm;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -40,6 +43,7 @@ public class User extends BaseEntity {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Role> roles;
 
     /**
