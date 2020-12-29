@@ -1,14 +1,14 @@
 #                                            Voting System
    This API proposes to use system to vote for a restaurant where user votes for place where he wants to
   have lunch. User is able to registration and sign in to the system. System has two roles and new users will
-  have '_role_user_'. User is able show all restaurants and each restaurant's menu. Also user can vote to 
+  have '_role_user_'. User is able to show all restaurants and each restaurant's menu. Also user can vote to 
   restaurant where he wants to have lunch. User is an able vote to the restaurant before 11:00 AM. After this 
-  time system won't be receive any votes. 
+  time system won't be received any votes. 
        In this system user with 'admin_role' can create and update menu for each restaurant. Meal can be
        updated as for one of restaurant as for few restaurants. Also system writes audit to each vote of each user 
     and history menu for each restaurant.
 
-#API
+#                                      API
   
 ## UserController
 #### SignUp.

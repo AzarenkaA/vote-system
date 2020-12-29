@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.azarenka</groupId>
     <artifactId>voting-system</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-ALFA</version>
     <name>voting-system</name>
     <packaging>jar</packaging>
     <description>Voting system to decide where to have lunch</description>
