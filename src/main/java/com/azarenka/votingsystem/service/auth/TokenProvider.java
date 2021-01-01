@@ -4,7 +4,6 @@ import com.azarenka.votingsystem.domain.auth.UserPrincipal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -30,11 +29,7 @@ public class TokenProvider {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TokenProvider.class);
 
-    @Value("jwtSecretKey")
-    private String jwtSecret;
-
-    @Value("86400")
-    private int jwtExpiration;
+    private final String jwtSecret = "jwtSecretKey";
 
     /**
      * Generate jwr token.
@@ -46,6 +41,7 @@ public class TokenProvider {
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
+        int jwtExpiration = 3600;
         return Jwts.builder()
             .setSubject(userPrincipal.getUsername())
             .setIssuedAt(new Date())

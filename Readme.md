@@ -4,19 +4,31 @@
   have '_role_user_'. User is able to show all restaurants and each restaurant's menu. Also user can vote to 
   restaurant where he wants to have lunch. User is an able vote to the restaurant before 11:00 AM. After this 
   time system won't be received any votes. 
-       In this system user with 'admin_role' can create and update menu for each restaurant. Meal can be
-       updated as for one of restaurant as for few restaurants. Also system writes audit to each vote of each user 
-    and history menu for each restaurant.
+  In this system user with 'admin_role' can create and update menu for each restaurant. Meal can be
+  updated as for one of restaurant as for few restaurants. Also system writes audit to each vote of each user 
+  and history menu for each restaurant.
 
 ### Content
   
+- [Start application](https://github.com/AzarenkaA/vote-system#start-application)
 - [API](https://github.com/AzarenkaA/vote-system#api)
     - [User controller](https://github.com/AzarenkaA/vote-system#usercontroller)
     - [Restaurant controller](https://github.com/AzarenkaA/vote-system#restaurantcontroller)
     - [Meal controller](https://github.com/AzarenkaA/vote-system#mealcontroller)
 - [DataBase](https://github.com/AzarenkaA/vote-system#data-base)
+- [CURL commands for test application](https://github.com/AzarenkaA/vote-system#curl-commands)
 
-#                                      API
+## Start Application
+   For start the application should be installed JDK8 on the computer.
+   
+   In the console inter next commands:
+   - mvnw clean idea:idea - download all dependencies
+   - mvnw clean package - build of the project
+   - mvnw spring-boot:run - start application
+   
+   Application will be started on port 8080. 
+
+#                                     API
   
 ## UserController
 #### SignUp.
@@ -186,7 +198,7 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
 Http method: **GET**
 mapping http://localhost:8080/api/restaurants/{id}/history/{date}
 
-   Date should be represented in a format YYY-mm-dd (2020-12-15)  
+   Date should be represented in a format yyyy-mm-dd (2020-12-15)  
    
    Example of response:
       
@@ -219,7 +231,7 @@ mapping http://localhost:8080/api/restaurants/{id}/votes
          "countOfVotes": 2
      }
  
- ##     MealController    
+ ##   MealController    
  #### Save meal with many restaurants.
  Http method: **POST**:
  
@@ -320,3 +332,20 @@ This table doesn't have addition fields.
 |------       |:------:        |
 |audit_id     |varchar(256)    |
 |meal_id      |varchar(256)    |
+
+# CURL commands
+
+Expept _signup_ and _signin_ all commands should contain a header _Authorization_ with parameter: _Bearer' + space + 'token_.
+
+ - sign in like admin
+    - [url](https://github.com/AzarenkaA/vote-system#signin)
+ - sign in like user
+    - [just signup](https://github.com/AzarenkaA/vote-system#signup)
+ - get all restaurants
+    - GET http://localhost:8080/api/restaurants/
+ - vote
+    - POST http://localhost:8080/api/restaurants/fd7ffad2-426c-42fe-9908-f053a882a4f7
+ - history vote
+    - GET http://localhost:8080/api/restaurants/fd7ffad2-426c-42fe-9908-f053a882a4f7/history/yyyy-mm-dd
+ 
+ Others commands you can find [here](https://github.com/AzarenkaA/vote-system#api)  
