@@ -6,8 +6,6 @@ import com.azarenka.votingsystem.domain.Role;
 import com.azarenka.votingsystem.domain.User;
 import com.azarenka.votingsystem.repository.IUserRepository;
 
-import liquibase.pro.packaged.U;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
