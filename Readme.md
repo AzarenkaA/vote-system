@@ -8,6 +8,14 @@
        updated as for one of restaurant as for few restaurants. Also system writes audit to each vote of each user 
     and history menu for each restaurant.
 
+### Content
+  
+- [API](https://github.com/AzarenkaA/vote-system#api)
+    - [User controller](https://github.com/AzarenkaA/vote-system#usercontroller)
+    - [Restaurant controller](https://github.com/AzarenkaA/vote-system#restaurantcontroller)
+    - [Meal controller](https://github.com/AzarenkaA/vote-system#mealcontroller)
+- [DataBase](https://github.com/AzarenkaA/vote-system#data-base)
+
 #                                      API
   
 ## UserController
@@ -69,7 +77,7 @@ next message:
    After the login in the system that to be able swap messaging between systems requests should have header 
    'Authorization' with the parameter: 'Bearer' + space + 'token'.
    
-##RestaurantController
+##  RestaurantController
 
 This controller proposes next api:
    - Gets all restaurants. System returns only restaurant without meal.
@@ -162,7 +170,7 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
    Example of request:
    
     {
-       "id": "",
+        "id": "",
         "title": "newTitle3",
         "price": "50.00",
         "restaurantsIds": []  
@@ -175,7 +183,7 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
     }
 
 #### History menu of restaurant.
-Http method **GET**:
+Http method: **GET**
 mapping http://localhost:8080/api/restaurants/{id}/history/{date}
 
    Date should be represented in a format YYY-mm-dd (2020-12-15)  
@@ -210,4 +218,105 @@ mapping http://localhost:8080/api/restaurants/{id}/votes
          "restaurantName": "Brevis",
          "countOfVotes": 2
      }
+ 
+ ##     MealController    
+ #### Save meal with many restaurants.
+ Http method: **POST**:
+ 
+ mapping http://localhost:8080/api/menus/
+ 
+    Example of request:
+    {
+        "id": "",
+        "title": "newTitle3",
+        "price": "50.00",
+        "restaurantsIds": [
+            "6ec18c9e-988d-45e3-b15d-0acc2e66e359",
+            "230a9585-9ec4-4d3a-8bb4-b2eda3b8a2cb"
+        ]  
+    }
+    
+ #### Update meal with many restaurants.
+ Http method: **PUT**:
      
+ mapping http://localhost:8080/api/menus/
+     
+        Example of request:
+        {
+            "id": "e476a3e6-1482-49cf-b8ca-bd4fc2e7cf6d",
+            "title": "newTitle3",
+            "price": "50.00",
+            "restaurantsIds": [
+                "6ec18c9e-988d-45e3-b15d-0acc2e66e359",
+                "230a9585-9ec4-4d3a-8bb4-b2eda3b8a2cb"
+            ]  
+        }
+        
+
+
+# Data Base
+  The database in this application and in integration tests represents an in-memory H2 database.
+  All tables have additional columns:
+  
+  |Column        |Type             |
+  |------        |:------:         |
+  |created_user  |varchar(256)     |
+  |updated_user  |varchar(256)     |
+  |created_date  |CURRENT_TIMESTAMP|
+  |updated_date  |CURRENT_TIMESTAMP|
+  |record_version|boolean          |
+  
+### Table users
+
+|Column  |Type            |
+|------  |:------:        |
+|id      |varchar(256)    |
+|name    |varchar(256)    |
+|email   |varchar(256)    |
+|password|varchar(256)    |
+|enabled |boolean         |
+
+### Table role
+
+|Column  |Type            |
+|------  |:------:        |
+|user_id |varchar(256)    |
+|role    |varchar(256)    |
+
+### Table restaurant
+
+|Column  |Type            |
+|------  |:------:        |
+|id      |varchar(256)    |
+|title   |varchar(256)    |
+|price   |decimal(10,2)   |
+
+### Table meal_to_restaurant_map
+This table doesn't have addition fields.
+
+|Column       |Type            |
+|------       |:------:        |
+|meal_id      |varchar(256)    |
+|restaurant_id|varchar(256)    |
+
+### Table vote
+
+|Column       |Type            |
+|------       |:------:        |
+|user_id      |varchar(256)    |
+|restaurant_id|varchar(256)    |
+
+### Table restaurant_audit
+
+|Column       |Type            |
+|------       |:------:        |
+|     id      |varchar(256)    |
+|menu_date    |varchar(256)    |
+
+### Table restaurant_audit_to_meal_map
+This table doesn't have addition fields.
+
+|Column       |Type            |
+|------       |:------:        |
+|audit_id     |varchar(256)    |
+|meal_id      |varchar(256)    |
