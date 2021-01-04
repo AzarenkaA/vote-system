@@ -1,12 +1,12 @@
 #                                            Voting System
-   This API proposes to use system to vote for a restaurant where user votes for place where he wants to
-  have lunch. User is able to registration and sign in to the system. System has two roles and new users will
-  have '_role_user_'. User is able to show all restaurants and each restaurant's menu. Also user can vote to 
-  restaurant where he wants to have lunch. User is an able vote to the restaurant before 11:00 AM. After this 
-  time system won't be received any votes. 
-  In this system user with 'admin_role' can create and update menu for each restaurant. Meal can be
-  updated as for one of restaurant as for few restaurants. Also system writes audit to each vote of each user 
-  and history menu for each restaurant.
+   This API proposes to use the system to vote for a restaurant where a user votes for the place where he wants to
+  have lunch. A user is able to registrate and sign in to the system. The system has two roles and new users will
+  have '_ROLE_USER_'.A user is able to be shown all restaurants and each restaurant's menu. Also, a user can vote for 
+  the restaurant where he wants to have lunch. A user is able to vote for the restaurant till 11:00 AM. After this 
+  time the system won't receive any votes. 
+  In this system a user with '_ROLE_ADMIN_' can create and update menu for each restaurant. Meal can be
+  updated either for one restaurant or for a few restaurants. Also, the system writes audit for each vote of each user 
+  and history of menu for each restaurant.
 
 ### Content
   
@@ -19,9 +19,9 @@
 - [CURL commands for test application](https://github.com/AzarenkaA/vote-system#curl-commands)
 
 ## Start Application
-   For start the application should be installed JDK8 on the computer.
+   To run the application JDK8 should be installed on the computer.
    
-   In the console inter next commands:
+   Enter next commands in the console:
    - mvnw clean idea:idea - download all dependencies
    - mvnw clean package - build of the project
    - mvnw spring-boot:run - start application
@@ -32,8 +32,8 @@
   
 ## UserController
 #### SignUp.
-  The system is an able to adds new users. System will registration of new user and gives him a ROLE_USER. User with 
-  admin role _ROLE_ADMIN_a already exist in the system.
+  The system is able to add new users. The system will registrate a new user and give him a '_ROLE_USER_'. The user with 
+  admin role '_ROLE_ADMIN_' is already exist in the system.
   
   Http method **POST**: 
   mapping http://localhost:8080/api/auth/signup.
@@ -46,16 +46,16 @@
        }
   
   - The system checks that username is valid email.
-  - The system checks that password more 5 symbols.
-  - The system checks existing user with such email in database.
+  - The system checks that password is more than 5 symbols.
+  - The system checks existing user with such email in the database.
   
-  If all checks passed it will receive next message:
+  If all checks pass it will receive next message:
     
         {
             "message": "User registered successfully!"
         }
      
-  In other case system will generate exception with a message:
+  In other case the system will generate an exception with the message:
             
         Unauthorized error. Message - User 123@mail.ru already exist.
   
@@ -64,15 +64,15 @@
 Http method **POST**: 
 mapping http://localhost:8080/api/auth/signin.  
 
-   The system to login takes next request:
+   The system takes next request for log in:
        
         {
             "username": "admin@mail.ru",
             "password": "admin123"
         } 
         
-   Authorization in the system was created with help JWT(json web token). After user login in the system he will receive 
-next message:
+   Authorization in the system was created with help of JWT(json web token). After a user logins in the system a user 
+   will receive next message:
         
         {
             "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLnJ1IiwiaWF0IjoxNjA3ODQ1MTg2LCJleHAiOjE2MDc5MzE1ODZ
@@ -86,17 +86,17 @@ next message:
             ]
         }
         
-   After the login in the system that to be able swap messaging between systems requests should have header 
+   After log into the system to be able to swap messages between systems requests should have header 
    'Authorization' with the parameter: 'Bearer' + space + 'token'.
    
 ##  RestaurantController
 
 This controller proposes next api:
-   - Gets all restaurants. System returns only restaurant without meal.
-   - Gets all meal of restaurant. 
-   - Saves menu to restaurant.
-   - Votes for a restaurant.
-   - Gets history menu of each restaurant by date.
+   - Get all restaurants. The system returns only restaurant without meal.
+   - Get all meal of the restaurant. 
+   - Save menu for a restaurant.
+   - Vote for a restaurant.
+   - Get history menu for each restaurant by date.
    
 #### Get all restaurants.
 The system returns all restaurants.
@@ -122,39 +122,39 @@ mapping http://localhost:8080/api/restaurants/
       ]
 
 #### To Vote.
-   The system proposes to user is able to vote for the restaurant by a unique identifier.
+   The system proposes to a user to vote for a restaurant by a unique identifier.
    
 Http method **POST**:
 mapping http://localhost:8080/api/restaurants/{id}
    
    The system checks next values:
-   - That user has role 'ROLE_ADMIN' and 'ROLE_USER'
-   - That restaurant with {id} exists in the system.
+   - A user has role '_ROLE_ADMIN_' and '_ROLE_USER_'
+   - A restaurant with {id} exists in the system.
    
-   Example of request:
+   Example of the request:
    
     http://localhost:8080/api/restaurants/1d4e58fd-6cff-46ff-832f-4be66ee7948a
     
-   Example of response:
+   Example of the response:
    
     {
         "message": "Voted successfully"
     }
     
 #### Menu by the restaurant.
-The system returns all current menu by a restaurant.
+The system returns a current menu of a restaurant.
 
 Http method **GET**:
 mapping http://localhost:8080/api/restaurants/{id}/menu
 
    The system checks next values:
-   - That user has role 'ROLE_ADMIN' and 'ROLE_USER'
+   - A user has role '_ROLE_ADMIN_' and '_ROLE_USER_'
     
-   Example of request:
+   Example of the request:
    
     http://localhost:8080/api/restaurants/1d4e58fd-6cff-46ff-832f-4be66ee7948a/menu
     
-   Example of response:
+   Example of the response:
    
     [
         {
@@ -179,7 +179,7 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
 Http method **POST**:
 mapping http://localhost:8080/api/restaurants/{id}/menu
 
-   Example of request:
+   Example of the request:
    
     {
         "id": "",
@@ -188,7 +188,7 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
         "restaurantsIds": []  
     }
     
-   Example of response:
+   Example of the response:
    
     {
         "message": "Created"
@@ -196,11 +196,12 @@ mapping http://localhost:8080/api/restaurants/{id}/menu
 
 #### History menu of restaurant.
 Http method: **GET**
+
 mapping http://localhost:8080/api/restaurants/{id}/history/{date}
 
    Date should be represented in a format yyyy-mm-dd (2020-12-15)  
    
-   Example of response:
+   Example of the response:
       
        {
            "restaurantTitle": "Tracktir",
@@ -222,9 +223,10 @@ mapping http://localhost:8080/api/restaurants/{id}/history/{date}
        
 #### Get votes of restaurant.
 Http method **GET**:
+
 mapping http://localhost:8080/api/restaurants/{id}/votes
 
- Example of response:
+ Example of the response:
      
      {
          "restaurantName": "Brevis",
@@ -237,7 +239,8 @@ mapping http://localhost:8080/api/restaurants/{id}/votes
  
  mapping http://localhost:8080/api/menus/
  
-    Example of request:
+   Example of the request:
+    
     {
         "id": "",
         "title": "newTitle3",
@@ -253,7 +256,8 @@ mapping http://localhost:8080/api/restaurants/{id}/votes
      
  mapping http://localhost:8080/api/menus/
      
-        Example of request:
+   Example of the request:
+     
         {
             "id": "e476a3e6-1482-49cf-b8ca-bd4fc2e7cf6d",
             "title": "newTitle3",
@@ -270,13 +274,13 @@ mapping http://localhost:8080/api/restaurants/{id}/votes
   The database in this application and in integration tests represents an in-memory H2 database.
   All tables have additional columns:
   
-  |Column        |Type             |
-  |------        |:------:         |
-  |created_user  |varchar(256)     |
-  |updated_user  |varchar(256)     |
-  |created_date  |CURRENT_TIMESTAMP|
-  |updated_date  |CURRENT_TIMESTAMP|
-  |record_version|boolean          |
+|Column        |Type             |
+|------        |:------:         |
+|created_user  |varchar(256)     |
+|updated_user  |varchar(256)     |
+|created_date  |CURRENT_TIMESTAMP|
+|updated_date  |CURRENT_TIMESTAMP|
+|record_version|boolean          |
   
 ### Table users
 
@@ -304,7 +308,7 @@ mapping http://localhost:8080/api/restaurants/{id}/votes
 |price   |decimal(10,2)   |
 
 ### Table meal_to_restaurant_map
-This table doesn't have addition fields.
+This table doesn't have additional fields.
 
 |Column       |Type            |
 |------       |:------:        |
@@ -326,7 +330,7 @@ This table doesn't have addition fields.
 |menu_date    |varchar(256)    |
 
 ### Table restaurant_audit_to_meal_map
-This table doesn't have addition fields.
+This table doesn't have additional fields.
 
 |Column       |Type            |
 |------       |:------:        |
@@ -335,7 +339,7 @@ This table doesn't have addition fields.
 
 # CURL commands
 
-Expept _signup_ and _signin_ all commands should contain a header _Authorization_ with parameter: _Bearer' + space + 'token_.
+Except _signup_ and _signin_ all commands should contain a header _Authorization_ with the parameter: _Bearer' + space + 'token_.
 
  - sign in like admin
     - [url](https://github.com/AzarenkaA/vote-system#signin)
@@ -348,4 +352,4 @@ Expept _signup_ and _signin_ all commands should contain a header _Authorization
  - history vote
     - GET http://localhost:8080/api/restaurants/fd7ffad2-426c-42fe-9908-f053a882a4f7/history/yyyy-mm-dd
  
- Others commands you can find [here](https://github.com/AzarenkaA/vote-system#api)  
+ Other commands you can find [here](https://github.com/AzarenkaA/vote-system#api)  
